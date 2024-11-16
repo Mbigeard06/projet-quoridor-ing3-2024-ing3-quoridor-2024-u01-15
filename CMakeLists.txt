@@ -10,4 +10,10 @@ add_executable(Quoridor2024 main.cpp
         Action.h
         Action.h
         Barriere.h
+        Plateau.c
+        Plateau.h
+        Menu.h
+        Partie.c
+        Partie.h
+        Deplacement.h
 )

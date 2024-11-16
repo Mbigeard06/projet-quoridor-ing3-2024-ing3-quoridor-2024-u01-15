@@ -65,7 +65,9 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				1
+				1,
+				6,
+				9
 			]
 		}
 	],
@@ -103,7 +105,9 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				6,
+				9
 			]
 		},
 		{
@@ -113,7 +117,11 @@
 				2,
 				3,
 				4,
-				5
+				5,
+				7,
+				8,
+				10,
+				11
 			]
 		}
 	],
@@ -149,6 +157,38 @@
 		{
 			"backtrace" : 1,
 			"path" : "Barriere.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Plateau.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Plateau.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Menu.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Partie.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Partie.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Deplacement.h",
 			"sourceGroupIndex" : 1
 		}
 	],

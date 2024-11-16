@@ -16,7 +16,7 @@ typedef enum {
 //Represente une action
 typedef struct {
     //Type d'action effectuée
-    typeAction action;
+    TypeAction action;
     //Joueur ayant executé l'action
     Joueur* joueur;
     //Position avant execution de l'action
