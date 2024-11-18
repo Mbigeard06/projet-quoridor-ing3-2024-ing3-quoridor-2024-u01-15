@@ -24,7 +24,7 @@ typedef struct {
 
 
 //----------------------------- FONCTIONS -------------------------------------
-//Initialise une partie A METTRE DANS LE MENU
+//Initialise une partie
 void InitialiserPartie(Partie* partie, int nbJoueurs);
 //Calculer ordre de passage
 void CalculerPassage(Joueur* joueur[]);

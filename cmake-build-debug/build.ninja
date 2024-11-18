@@ -73,6 +73,12 @@ build CMakeFiles/Quoridor2024.dir/Partie.c.obj: C_COMPILER__Quoridor2024_unscann
   OBJECT_DIR = CMakeFiles\Quoridor2024.dir
   OBJECT_FILE_DIR = CMakeFiles\Quoridor2024.dir
 
+build CMakeFiles/Quoridor2024.dir/Menu.c.obj: C_COMPILER__Quoridor2024_unscanned_Debug C$:/Users/Bigeard/CLionProjects/Quoridor2024/projet-quoridor-ing3-2024-ing3-quoridor-2024-u01-15/Menu.c || cmake_object_order_depends_target_Quoridor2024
+  DEP_FILE = CMakeFiles\Quoridor2024.dir\Menu.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Quoridor2024.dir
+  OBJECT_FILE_DIR = CMakeFiles\Quoridor2024.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Quoridor2024
@@ -81,7 +87,7 @@ build CMakeFiles/Quoridor2024.dir/Partie.c.obj: C_COMPILER__Quoridor2024_unscann
 #############################################
 # Link the executable Quoridor2024.exe
 
-build Quoridor2024.exe: CXX_EXECUTABLE_LINKER__Quoridor2024_Debug CMakeFiles/Quoridor2024.dir/main.cpp.obj CMakeFiles/Quoridor2024.dir/Joueur.c.obj CMakeFiles/Quoridor2024.dir/Plateau.c.obj CMakeFiles/Quoridor2024.dir/Partie.c.obj
+build Quoridor2024.exe: CXX_EXECUTABLE_LINKER__Quoridor2024_Debug CMakeFiles/Quoridor2024.dir/main.cpp.obj CMakeFiles/Quoridor2024.dir/Joueur.c.obj CMakeFiles/Quoridor2024.dir/Plateau.c.obj CMakeFiles/Quoridor2024.dir/Partie.c.obj CMakeFiles/Quoridor2024.dir/Menu.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Quoridor2024.dir

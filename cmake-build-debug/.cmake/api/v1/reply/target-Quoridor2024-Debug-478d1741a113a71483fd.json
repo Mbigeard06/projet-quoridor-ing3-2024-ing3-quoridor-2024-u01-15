@@ -67,7 +67,8 @@
 			[
 				1,
 				6,
-				9
+				9,
+				12
 			]
 		}
 	],
@@ -107,7 +108,8 @@
 				0,
 				1,
 				6,
-				9
+				9,
+				12
 			]
 		},
 		{
@@ -190,6 +192,12 @@
 			"backtrace" : 1,
 			"path" : "Deplacement.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Menu.c",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

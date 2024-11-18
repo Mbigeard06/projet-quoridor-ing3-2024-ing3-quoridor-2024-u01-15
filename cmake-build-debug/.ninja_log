@@ -1,8 +1,11 @@
 # ninja log v6
 11	1491	7534704768032492	CMakeFiles/Quoridor2024.dir/main.cpp.obj	4cb4ac13627c6d77
-136	338	7534738579364598	Quoridor2024.exe	e473ba4464c85935
-15	135	7534738578109935	CMakeFiles/Quoridor2024.dir/Joueur.c.obj	9722ba6bbc884615
-30	120	7534778168818302	CMakeFiles/Quoridor2024.dir/Plateau.c.obj	259463f5fe586bdb
-23	125	7534778168751419	CMakeFiles/Quoridor2024.dir/Joueur.c.obj	9722ba6bbc884615
-7	65	7534779199586664	CMakeFiles/Quoridor2024.dir/Partie.c.obj	5783f31d590f65ae
 65	218	7534779200164246	Quoridor2024.exe	25889ff2f1a3231b
+23	125	7534778168751419	CMakeFiles/Quoridor2024.dir/Joueur.c.obj	9722ba6bbc884615
+30	120	7534778168818302	CMakeFiles/Quoridor2024.dir/Plateau.c.obj	259463f5fe586bdb
+7	65	7534779199586664	CMakeFiles/Quoridor2024.dir/Partie.c.obj	5783f31d590f65ae
+10	85	7536324331273315	CMakeFiles/Quoridor2024.dir/Menu.c.obj	a96192f0ff5afe4
+6	67	7536324691884177	CMakeFiles/Quoridor2024.dir/Joueur.c.obj	9722ba6bbc884615
+6	57	7536324795701204	CMakeFiles/Quoridor2024.dir/Joueur.c.obj	9722ba6bbc884615
+6	145	7536326341162354	CMakeFiles/Quoridor2024.dir/Partie.c.obj	5783f31d590f65ae
+145	319	7536326342552042	Quoridor2024.exe	5b784d85fcd73d88

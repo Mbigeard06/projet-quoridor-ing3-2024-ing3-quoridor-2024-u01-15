@@ -5,6 +5,11 @@
 #ifndef MENU_H
 #define MENU_H
 
+
+//Afficher le menu
+int menuIhm();
+//Lancer le menu
+void menu();
 //Lancer une nouvelle partie
 void NouvellePartie();
 //Charger une ancienne partie

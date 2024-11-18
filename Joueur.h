@@ -6,7 +6,7 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
-#include "Position.h";
+#include "Position.h"
 
 //Représente une joueur
 typedef struct {

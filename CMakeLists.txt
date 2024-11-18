@@ -16,4 +16,5 @@ add_executable(Quoridor2024 main.cpp
         Partie.c
         Partie.h
         Deplacement.h
+        Menu.c
 )
