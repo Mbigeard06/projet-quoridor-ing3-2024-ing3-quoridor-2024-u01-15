@@ -18,4 +18,8 @@ add_executable(Quoridor2024
         Deplacement.h
         Menu.c
         main.c
+        JoueurDao.c
+        JoueurDao.h
+        PartieDao.c
+        PartieDao.h
 )

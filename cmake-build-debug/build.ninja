@@ -79,6 +79,18 @@ build CMakeFiles/Quoridor2024.dir/main.c.obj: C_COMPILER__Quoridor2024_unscanned
   OBJECT_DIR = CMakeFiles\Quoridor2024.dir
   OBJECT_FILE_DIR = CMakeFiles\Quoridor2024.dir
 
+build CMakeFiles/Quoridor2024.dir/JoueurDao.c.obj: C_COMPILER__Quoridor2024_unscanned_Debug C$:/Users/Bigeard/CLionProjects/Quoridor2024/projet-quoridor-ing3-2024-ing3-quoridor-2024-u01-15/JoueurDao.c || cmake_object_order_depends_target_Quoridor2024
+  DEP_FILE = CMakeFiles\Quoridor2024.dir\JoueurDao.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Quoridor2024.dir
+  OBJECT_FILE_DIR = CMakeFiles\Quoridor2024.dir
+
+build CMakeFiles/Quoridor2024.dir/PartieDao.c.obj: C_COMPILER__Quoridor2024_unscanned_Debug C$:/Users/Bigeard/CLionProjects/Quoridor2024/projet-quoridor-ing3-2024-ing3-quoridor-2024-u01-15/PartieDao.c || cmake_object_order_depends_target_Quoridor2024
+  DEP_FILE = CMakeFiles\Quoridor2024.dir\PartieDao.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Quoridor2024.dir
+  OBJECT_FILE_DIR = CMakeFiles\Quoridor2024.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Quoridor2024
@@ -87,7 +99,7 @@ build CMakeFiles/Quoridor2024.dir/main.c.obj: C_COMPILER__Quoridor2024_unscanned
 #############################################
 # Link the executable Quoridor2024.exe
 
-build Quoridor2024.exe: C_EXECUTABLE_LINKER__Quoridor2024_Debug CMakeFiles/Quoridor2024.dir/Joueur.c.obj CMakeFiles/Quoridor2024.dir/Plateau.c.obj CMakeFiles/Quoridor2024.dir/Partie.c.obj CMakeFiles/Quoridor2024.dir/Menu.c.obj CMakeFiles/Quoridor2024.dir/main.c.obj
+build Quoridor2024.exe: C_EXECUTABLE_LINKER__Quoridor2024_Debug CMakeFiles/Quoridor2024.dir/Joueur.c.obj CMakeFiles/Quoridor2024.dir/Plateau.c.obj CMakeFiles/Quoridor2024.dir/Partie.c.obj CMakeFiles/Quoridor2024.dir/Menu.c.obj CMakeFiles/Quoridor2024.dir/main.c.obj CMakeFiles/Quoridor2024.dir/JoueurDao.c.obj CMakeFiles/Quoridor2024.dir/PartieDao.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Quoridor2024.dir

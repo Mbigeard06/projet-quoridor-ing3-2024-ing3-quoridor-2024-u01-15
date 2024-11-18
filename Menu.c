@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 //Afficher le menu
-int menuIhm() {
+int MenuIhm() {
     // Affichage du menu d'accueil
     printf("Menu d'accueil - Choisissez une option :\n");
     printf("1/ Lancer une nouvelle partie\n");
@@ -22,8 +22,32 @@ int menuIhm() {
 }
 
 // Lancer le menu
-void menu() {
-    // Cette fonction est déjà implémentée dans votre code
+void Menu() {
+    int choix = MenuIhm();
+    //Tant que le choix est invalides
+    while (!(choix >= 1 && choix <= 5)) {
+        printf("Choix non valide, veuillez selectionner un chiffre entre 1 et 5 !");
+        //Recuperer le choix de l'utilisateur
+        choix = MenuIhm();
+    }
+    switch (choix) {
+        case 1:
+            NouvellePartie();
+        break;
+        case 2:
+            ChargerPartie();
+        break;
+        case 3:
+            ScoreJoueurs();
+        break;
+        case 4:
+            Aide();
+        break;
+        case 5:
+            Quitter();
+        break;
+    }
+
 }
 
 // Lancer une nouvelle partie
@@ -32,11 +56,14 @@ void NouvellePartie() {
 }
 
 // Charger une ancienne partie
-void ChargerPartie(char nomPartie[40]) {
+void ChargerPartie() {
     // Implémentation à faire
 }
 
 // Afficher les scores des joueurs
-void AfficherScoreJoueur(char nomPartie[40]) {
+void ScoreJoueurs() {
     // Implémentation à faire
 }
+
+void Aide() {}
+void Quitter(){}

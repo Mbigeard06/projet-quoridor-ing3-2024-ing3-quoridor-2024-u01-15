@@ -13,6 +13,7 @@ typedef struct {
     char nom[30];
     int* nbrBarriere;
     Position* position;
+    int score;
 } Joueur;
 
 //Deplace le joueur (change ces coordonnées)

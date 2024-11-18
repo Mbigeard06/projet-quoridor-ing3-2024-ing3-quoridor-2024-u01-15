@@ -4,6 +4,6 @@
 #include "Menu.h"
 
 int main() {
-    menuIhm();
+    Menu();
     return 0;
 }
