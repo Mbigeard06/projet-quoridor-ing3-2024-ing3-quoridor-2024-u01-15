@@ -4,6 +4,8 @@
 #include "Menu.h"
 #include <stdio.h>
 
+#include "Partie.h"
+
 //Afficher le menu
 int MenuIhm() {
     // Affichage du menu d'accueil
@@ -52,7 +54,7 @@ void Menu() {
 
 // Lancer une nouvelle partie
 void NouvellePartie() {
-    // Implémentation à faire
+    Partie* partie = InitialiserPartie();
 }
 
 // Charger une ancienne partie
