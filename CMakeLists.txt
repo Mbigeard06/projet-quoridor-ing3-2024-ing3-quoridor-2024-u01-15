@@ -3,7 +3,7 @@ project(Quoridor2024)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Quoridor2024 main.cpp
+add_executable(Quoridor2024
         Joueur.c
         Joueur.h
         Position.h
@@ -17,4 +17,5 @@ add_executable(Quoridor2024 main.cpp
         Partie.h
         Deplacement.h
         Menu.c
+        main.c
 )

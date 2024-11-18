@@ -2,7 +2,6 @@
 // Created by Bigeard on 11/18/2024.
 //
 #include "Menu.h"
-
 #include <stdio.h>
 
 //Afficher le menu
@@ -20,4 +19,24 @@ int menuIhm() {
     scanf("%d", &choix);
 
     return choix;
+}
+
+// Lancer le menu
+void menu() {
+    // Cette fonction est déjà implémentée dans votre code
+}
+
+// Lancer une nouvelle partie
+void NouvellePartie() {
+    // Implémentation à faire
+}
+
+// Charger une ancienne partie
+void ChargerPartie(char nomPartie[40]) {
+    // Implémentation à faire
+}
+
+// Afficher les scores des joueurs
+void AfficherScoreJoueur(char nomPartie[40]) {
+    // Implémentation à faire
 }

@@ -38,36 +38,16 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++20 -fdiagnostics-color=always"
-				}
-			],
-			"language" : "CXX",
-			"languageStandard" : 
-			{
-				"backtraces" : 
-				[
-					1
-				],
-				"standard" : "20"
-			},
-			"sourceIndexes" : 
-			[
-				0
-			]
-		},
-		{
-			"compileCommandFragments" : 
-			[
-				{
 					"fragment" : "-g -fdiagnostics-color=always"
 				}
 			],
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				1,
-				6,
-				9,
+				0,
+				5,
+				8,
+				11,
 				12
 			]
 		}
@@ -90,7 +70,7 @@
 				"role" : "libraries"
 			}
 		],
-		"language" : "CXX"
+		"language" : "C"
 	},
 	"name" : "Quoridor2024",
 	"nameOnDisk" : "Quoridor2024.exe",
@@ -106,9 +86,9 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1,
-				6,
-				9,
+				5,
+				8,
+				11,
 				12
 			]
 		},
@@ -116,14 +96,14 @@
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
+				1,
 				2,
 				3,
 				4,
-				5,
+				6,
 				7,
-				8,
-				10,
-				11
+				9,
+				10
 			]
 		}
 	],
@@ -132,12 +112,6 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "main.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 1,
 			"path" : "Joueur.c",
 			"sourceGroupIndex" : 0
 		},
@@ -163,7 +137,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "Plateau.c",
 			"sourceGroupIndex" : 0
 		},
@@ -179,7 +153,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "Partie.c",
 			"sourceGroupIndex" : 0
 		},
@@ -195,8 +169,14 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "Menu.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.c",
 			"sourceGroupIndex" : 0
 		}
 	],
