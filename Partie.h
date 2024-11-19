@@ -19,13 +19,13 @@ typedef struct {
     //Dernier Action
     Action dernierAction;
     //Joueur de la partie (Allocation dynamique) (tableau de pointeur de joueur)
-    Joueur* joueurs[];
+    Joueur* joueurs;
 } Partie;
 
 
 //----------------------------- FONCTIONS -------------------------------------
 //Initialise une partie
-void InitialiserPartie(Partie* partie, int nbJoueurs);
+Partie* InitialiserPartie();
 //Calculer ordre de passage
 void CalculerPassage(Joueur* joueur[]);
 //Deplacer un joueur

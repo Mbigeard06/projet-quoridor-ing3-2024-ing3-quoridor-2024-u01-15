@@ -6,14 +6,17 @@
 #define MENU_H
 
 
-//Afficher le menu
-int menuIhm();
 //Lancer le menu
-void menu();
+void Menu();
 //Lancer une nouvelle partie
 void NouvellePartie();
 //Charger une ancienne partie
-void ChargerPartie(char nomPartie[40]);
+void ChargerPartie();
 //Afficher les scores des joueurs
-void AfficherScoreJoueur(char nomPartie[40]);
+void ScoreJoueurs();
+//Afficher l'aide
+void Aide();
+//Quitter
+void Quitter();
 #endif //MENU_H
+

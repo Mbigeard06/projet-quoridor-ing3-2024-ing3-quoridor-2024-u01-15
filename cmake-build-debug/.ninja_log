@@ -1,7 +1,0 @@
-# ninja log v6
-11	1491	7534704768032492	CMakeFiles/Quoridor2024.dir/main.cpp.obj	4cb4ac13627c6d77
-145	319	7536326342552042	Quoridor2024.exe	5b784d85fcd73d88
-6	57	7536324795701204	CMakeFiles/Quoridor2024.dir/Joueur.c.obj	9722ba6bbc884615
-30	120	7534778168818302	CMakeFiles/Quoridor2024.dir/Plateau.c.obj	259463f5fe586bdb
-6	145	7536326341162354	CMakeFiles/Quoridor2024.dir/Partie.c.obj	5783f31d590f65ae
-10	85	7536324331273315	CMakeFiles/Quoridor2024.dir/Menu.c.obj	a96192f0ff5afe4
