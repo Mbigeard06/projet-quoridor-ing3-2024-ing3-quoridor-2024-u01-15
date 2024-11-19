@@ -126,18 +126,24 @@ void Aide(
 
         break;
         case 2:
-            printf("\Voyons ensemble les regles du jeu :\n");
+            printf("Voyons ensemble les regles du jeu :\n");
+            printf("\t* Le jeu se joue en paires soit 02 deux joueur l'un en face de l'autre, soit a 04 avec un joueur sur chaque cote du plateau \n");
+            printf("\t* Le jeu peut se faire soit des humain contre l'IA soit contre un joueur humain \n");
             printf("\t* Chaque joueur a la main a tour de role : \n");
             printf("\t* Chaque joueur est caracterise par son nom et une lettre qu'il choisit pour etre affichee sur le plateau\n");
-            printf("\t* Lorsque le joueur a la main il peut effectuer deux actions :\n");
+            printf("\t* Chaque joueur dispose d'un nombre de barriere predefini et distribue de maniere equitable des l'entame du jeu\n");
+            printf("\t* L'ordre de jeu est defini au hazard au debut du jeu\n");
+            printf("\t* Lorsque le joueur a la main il peut effectuer quatres actions :\n");
             printf("\t\t* Deplacer son pion dans une direction (Gauche, Droite, en Haut et en Bas) à sa guise \n");
             printf("\t\t* Placer une barriere pour tracer son chemin ou bloquer les autres joueurs\n");
+            printf("\t\t* Passer son tour\n");
+            printf("\t\t* Annuler le dernier mouvement effectuer\n");
+            printf("\t* Si le joueur est bloque sur le deplacement qu'il choisit alors il rejoue\n");
             printf("\t* Pour quitter le jeu il faut sauvergarder la partie en cours\n");
             printf("\t* Le jeu se termine si il est sauvegarder ou si un des joueurs remporte la partie\n");
-            printf("\t* La partie est remportee lorsque ?????\n");
+            printf("\t* La partie est remportee lorsque un joueur atteint le bord du plateau en face de lui \n");
             printf("\n");
             Aide();
-
         break;
         case 3:
             Menu();
