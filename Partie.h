@@ -15,9 +15,9 @@ typedef struct {
     //Nombre de Joueur
     int nbJoueur;
     //Plateau de la partie
-    Plateau* plateau;
+    Plateau plateau;
     //Dernier Action
-    Action dernierAction;
+    Action* dernierAction;
     //Joueur de la partie (Allocation dynamique) (tableau de pointeur de joueur)
     Joueur* joueurs;
 } Partie;

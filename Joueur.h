@@ -14,10 +14,16 @@ typedef struct {
     int nbrBarriere;
     Position position;
     int score;
+    char pion;
 } Joueur;
 
-//Deplace le joueur (change ces coordonnées)
-void deplacerJoueur(Joueur* joueur);
+//Deplacer le joueur (change ces coordonnées)
+void SetJoueurPosition(Joueur* joueur,Position position);
+//Attribuer les barrieres à un joueur
+void AttribuerBarriere(Joueur* joueurs, int nbBarriere);
+//Définir le pion du joueur
+void AttribuerPion(Joueur* joueur, char pion);
+
 
 
 #endif //JOUEUR_H
