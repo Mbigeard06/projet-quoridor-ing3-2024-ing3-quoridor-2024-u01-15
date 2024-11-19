@@ -6,6 +6,10 @@
 
 #include "Partie.h"
 
+//Vide le tampon
+void ViderTampon() {
+    while (getchar() != '\n');  // Lire et ignorer tous les caractères jusqu'au saut de ligne
+}
 //Afficher le menu
 int MenuIhm() {
     // Affichage du menu d'accueil
@@ -18,7 +22,12 @@ int MenuIhm() {
 
     int choix;
     printf("Entrez votre choix (1-5) : ");
-    scanf("%d", &choix);
+
+    if (scanf("%d", &choix) != 1) {
+        // Si la saisie échoue (par exemple, une lettre est entrée)
+        ViderTampon();  // Vider le tampon pour éliminer la saisie invalide
+        choix = 0;  // Forcer la boucle à redemander un choix
+    }
 
     return choix;
 }
@@ -47,6 +56,9 @@ void Menu() {
         break;
         case 5:
             Quitter();
+        break;
+        default:
+            Menu();
         break;
     }
 

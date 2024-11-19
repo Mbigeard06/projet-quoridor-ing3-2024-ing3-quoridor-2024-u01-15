@@ -55,6 +55,7 @@ void OrdreDePassageIhm(Partie* partie) {
 
 //Initialise la partie
 Partie* InitialiserPartie() {
+    //Initilisation des jouers
     Partie partie;
     //Récupération des informations sur les différents joueurs
     ObtenirJoueur(&partie);
@@ -62,6 +63,7 @@ Partie* InitialiserPartie() {
     OrdreDePassage(&partie);
     //Afficher l'ordre de passage
     OrdreDePassageIhm(&partie);
+    //Donnes les barrieres aux joueurs
     return NULL;
 }
 
