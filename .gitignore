@@ -1,0 +1,11 @@
+# Fichiers de build
+cmake-build-debug/
+CMakeCache.txt
+CMakeFiles/
+
+# Fichiers logs
+*.log
+
+# Fichiers d'IDE 
+.idea/
+*.iml
