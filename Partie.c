@@ -16,7 +16,11 @@ void ObtenirJoueur(Partie* partie) {
 
     // Récupérer le nombre de joueurs, tant que ce n'est pas 2 ou 4
     while (partie->nbJoueur != 2 && partie->nbJoueur != 4) {
-        scanf("%d", &partie->nbJoueur);
+        if (scanf("%d", &partie->nbJoueur) != 1) {
+            // Si la saisie échoue (par exemple, une lettre est entrée)
+            while (getchar() != '\n');  // Vider le tampon pour éliminer la saisie invalide
+            partie->nbJoueur = 0;  // Forcer la boucle à redemander un choix
+        }
         if (partie->nbJoueur != 2 && partie->nbJoueur != 4) {
             printf("Veuillez entrer 2 ou 4 joueurs seulement : ");
         }
