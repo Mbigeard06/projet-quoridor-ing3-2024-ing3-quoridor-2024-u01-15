@@ -13,12 +13,36 @@ void ViderTampon() {
 //Afficher le menu
 int MenuIhm() {
     // Affichage du menu d'accueil
-    printf("Menu d'accueil - Choisissez une option :\n");
-    printf("1/ Lancer une nouvelle partie\n");
-    printf("2/ Reprendre une partie sauvegardée\n");
-    printf("3/ Afficher les scores\n");
-    printf("4/ Afficher l'aide\n");
-    printf("5/ Quitter le jeu\n");
+    printf("\n");
+    printf("\n");
+    printf("\t***************************************************************************************************\t\n");
+    printf("\t***************************************************************************************************\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *      **\t\n");
+    printf("\t**      *                        BIENVENUE SUR NOTRE MENU D'ACCEUIL                       *      **\t\n");
+    printf("\t**      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *      **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**                                          LE QUORIDOR                                          **\t\n");
+    printf("\t**            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~           **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**               VEUILLEZ CHOISIR UNE OPTION                                                     **\t\n");
+    printf("\t**             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                    **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**        1 - DEMARRER UN NOUVELLE PARTIE                                                        **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**        2 - REPRENDRE UNE PARTIE SAUVEGARDEE                                                   **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**        3 - AFFICHER LES SCORES                                                                **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**        4 - AFFICHER L'AIDE                                                                    **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**        5 - QUITTER LE JEU                                                                     **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t**                                         AMUSEZ VOUS BIEN!!                                    **\t\n");
+    printf("\t**                                                                                               **\t\n");
+    printf("\t***************************************************************************************************\t\n");
+    printf("\t***************************************************************************************************\t\n");
+    printf("\n");
 
     int choix;
     printf("Entrez votre choix (1-5) : ");
