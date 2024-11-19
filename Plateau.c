@@ -9,47 +9,22 @@
 #include "Joueur.h"
 #include "Position.h"
 
-//Initialise la position
-void IntialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {
-    //Premier joueur
-    Position p0;
-    p0.x = 0;
-    p0.y = 4;
-    //Placer pion
-    PlacerPion(plateau, p0, &joueurs[0]);
-    //Modification position joueur (objet)
-    SetJoueurPosition(&joueurs[0], p0 );
+// Fonction principale pour initialiser les joueurs sur le plateur
+void InitialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {
+    // Définir les positions de base des joueurs (en fonction du nombre de joueurs)
+    Position positions[] = {
+        {0, 4},  // Joueur 1 (haut du plateau)
+        {TAILLE_PLATEAU - 1, 4},  // Joueur 2 (bas du plateau)
+        {4, 0},  // Joueur 3 (gauche du plateau)
+        {4, TAILLE_PLATEAU - 1}  // Joueur 4 (droite du plateau)
+    };
 
-    //Premier joueur
-    Position p1;
-    p1.x = TAILLE_PLATEAU - 1;
-    p1.y = 4;
-    //Placer pion
-    PlacerPion(plateau, p1, &joueurs[1]);
-    //Modification position joueur (objet)
-    SetJoueurPosition(&joueurs[1], p1);
-
-    if(nbJoueur > 2) {
-        //Placer les joueur supplémentaires
-        Position p2;
-        p2.x = 4;
-        p2.y = 0;
-        //Placer pion
-        PlacerPion(plateau, p2, &joueurs[2]);
-        //Modification position joueur (objet)
-        SetJoueurPosition(&joueurs[2], p2);
-
-        //Placer les joueur supplémentaires
-        Position p3;
-        p3.x = 4;
-        p3.y = TAILLE_PLATEAU - 1;
-        //Placer pion
-        PlacerPion(plateau, p3, &joueurs[3]);
-        //Modification position joueur (objet)
-        SetJoueurPosition(&joueurs[3], p3);
+    // Initialiser les joueurs sur le plateau en utilisant une boucle
+    for (int i = 0; i < nbJoueur; i++) {
+        PlacerPion(plateau, positions[i], &joueurs[i]);  // Placer le pion sur le plateau
+        SetJoueurPosition(&joueurs[i], positions[i]);    // Mettre à jour la position du joueur
     }
 }
-
 
 // Initialiser le plateau avec des cases vides
 void InitialiserPlateau(Plateau *p, Joueur *joueurs, int nbJoueurs) {
@@ -58,7 +33,7 @@ void InitialiserPlateau(Plateau *p, Joueur *joueurs, int nbJoueurs) {
             p->plateau[i][j] = ' '; // Case vide
         }
     }
-    IntialiserJoueursPlateau(joueurs, nbJoueurs, p);
+    InitialiserJoueursPlateau(joueurs, nbJoueurs, p);
 }
 
 // Placer un pion sur le plateau

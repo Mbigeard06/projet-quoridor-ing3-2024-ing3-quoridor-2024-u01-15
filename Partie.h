@@ -33,7 +33,7 @@ void DeplacerJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacemen
 //Placer une barrière
 void PlacerBarriere(Joueur* joueur, Position position);
 //Passer au tour suivant
-void TourSuivant(Joueur* joueur[], int* indiceJoueur, int nbJoueur, Action* dernierAction);
+void TourSuivant(Partie* partie);
 //Annuler l'action précédente
 void AnnulerAction(Joueur* joueur[], int indiceJoueur, int nbJoueur, Action dernierAction);
 //Sauvegarder Partie

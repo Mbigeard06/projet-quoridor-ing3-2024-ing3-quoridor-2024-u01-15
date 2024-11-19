@@ -79,8 +79,12 @@ void InitialiserJoueurs(Partie* partie) {
     //Donnes les barrieres aux joueurs
     AttribuerBarrieres(partie->joueurs, partie->nbJoueur);
     printf("%d",partie->joueurs[0].nbrBarriere);
-    //Initialiser position joueurs DeplacerJoueur(Joueur* joueur,Position position)
 }
+
+//Passer au tour suivant
+void TourSuivant(Partie* partie){
+    printf("A implémenter");
+};
 
 //Initialise la partie
 Partie* InitialiserPartie() {
@@ -92,8 +96,8 @@ Partie* InitialiserPartie() {
     AfficherPlateau(&partie.plateau);
     //Pas d'action avant
     partie.dernierAction =NULL;
-
     //Lancement du premier tour
+    TourSuivant(&partie);
     return NULL;
 }
 
@@ -103,8 +107,6 @@ void CalculerPassage(Joueur* joueur[]){};
 void DeplacerJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement){};
 //Placer une barrière
 void PlacerBarriere(Joueur* joueur, Position position){};
-//Passer au tour suivant
-void TourSuivant(Joueur* joueur[], int* indiceJoueur, int nbJoueur, Action* dernierAction){};
 //Annuler l'action précédente
 void AnnulerAction(Joueur* joueur[], int indiceJoueur, int nbJoueur, Action dernierAction){};
 //Sauvegarder Partie
