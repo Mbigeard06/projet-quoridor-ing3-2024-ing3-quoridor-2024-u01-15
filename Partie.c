@@ -7,6 +7,8 @@
 #include "Joueur.h"
 #include <stdlib.h>
 #include <time.h>
+
+#include "ActionIhm.h"
 #include "JoueurDao.h"
 
 //Définie les informations sur les différents joueur
@@ -87,7 +89,13 @@ void InitialiserJoueurs(Partie* partie) {
 
 //Passer au tour suivant
 void TourSuivant(Partie* partie){
-    printf("A implémenter");
+    //On passe au joueur suivant
+    if(partie->indiceJoueur < partie->nbJoueur - 1)partie->indiceJoueur++;
+    else {
+        partie->indiceJoueur = 0;
+    }
+    //Afficher les actions possibles
+    ActionIhm(partie->joueurs[partie->indiceJoueur]);
 };
 
 //Initialise la partie

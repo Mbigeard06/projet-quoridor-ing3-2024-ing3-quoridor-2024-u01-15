@@ -10,7 +10,7 @@
 #include "Action.h"
 
 typedef struct {
-    //Numero du joueur jouant à son tour
+    //Joueur en cours de tour
     int indiceJoueur;
     //Nombre de Joueur
     int nbJoueur;
