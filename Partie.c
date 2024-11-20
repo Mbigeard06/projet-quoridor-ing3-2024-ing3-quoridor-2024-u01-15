@@ -109,8 +109,6 @@ Partie* InitialiserPartie() {
 void CalculerPassage(Joueur* joueur[]){};
 //Deplacer un joueur
 void DeplacerJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement){};
-//Placer une barrière
-void PlacerBarriere(Joueur* joueur, Position position){};
 //Annuler l'action précédente
 void AnnulerAction(Joueur* joueur[], int indiceJoueur, int nbJoueur, Action dernierAction){};
 //Sauvegarder Partie

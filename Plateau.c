@@ -8,6 +8,7 @@
 
 #include "Joueur.h"
 #include "Position.h"
+#include "Barriere.h"
 
 // Fonction principale pour initialiser les joueurs sur le plateur
 void InitialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {
@@ -44,8 +45,25 @@ void PlacerPion(Plateau *p, Position pos, Joueur* joueur) {
     p->plateau[pos.x][pos.y] = joueur->pion;
 }
 
+
+//Placer une barriere
+void PlacerBarriere(Plateau *p, Barriere barriere) {
+    if(barriere.type == 'h') {
+        for(int i = 0; i < 2; i++) {
+            p->barriereHorizontal[barriere.position.x][barriere.position.y + i] = 'b';
+        }
+    }
+    else {
+        for(int i = 0; i < 2; i++) {
+            p->barriereVerticale[barriere.position.x + i][barriere.position.y] = 'b';
+        }
+    }
+}
+
+
 // Afficher le plateau de jeu avec des bordures et séparations
 void AfficherPlateau(Plateau *p) {
+
     printf("\n    ");
     for (int i = 0; i < TAILLE_PLATEAU; i++) {
         printf(" %d  ", i);  // Affiche les numéros de colonne en haut
@@ -58,14 +76,28 @@ void AfficherPlateau(Plateau *p) {
 
     for (int i = 0; i < TAILLE_PLATEAU; i++) {
         printf(" %d |", i);  // Affiche les numéros de ligne à gauche
+        //Vertical
         for (int j = 0; j < TAILLE_PLATEAU; j++) {
-            printf(" %c |", p->plateau[i][j]);
+            if(p->barriereVerticale[i][j] == 'b') {
+                printf(" %c b", p->plateau[i][j]);
+            }
+            else {
+                printf(" %c |", p->plateau[i][j]);
+            }
         }
         printf("\n   +");
+        //Horizontal
         for (int j = 0; j < TAILLE_PLATEAU; j++) {
-            printf("---+");
+            if(p->barriereHorizontal[i][j] == 'b') {
+                printf(" b +");
+            }
+            else {
+                printf("---+");
+            }
+
         }
         printf("\n");
     }
 }
+
 
