@@ -13,7 +13,8 @@
 void InitialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {
     // Définir les positions de base des joueurs (en fonction du nombre de joueurs)
     Position positions[] = {
-        {0, 4},  // Joueur 1 (haut du plateau)
+        {0, 4},  // Joueur 1 (haut du plateau)171
+
         {TAILLE_PLATEAU - 1, 4},  // Joueur 2 (bas du plateau)
         {4, 0},  // Joueur 3 (gauche du plateau)
         {4, TAILLE_PLATEAU - 1}  // Joueur 4 (droite du plateau)
@@ -31,6 +32,8 @@ void InitialiserPlateau(Plateau *p, Joueur *joueurs, int nbJoueurs) {
     for (int i = 0; i < TAILLE_PLATEAU; i++) {
         for (int j = 0; j < TAILLE_PLATEAU; j++) {
             p->plateau[i][j] = ' '; // Case vide
+            p->barriereHorizontal[i][j] = ' ';
+            p->barriereVerticale[i][j] = ' ';
         }
     }
     InitialiserJoueursPlateau(joueurs, nbJoueurs, p);

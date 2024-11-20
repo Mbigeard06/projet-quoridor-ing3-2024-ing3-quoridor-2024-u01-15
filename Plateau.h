@@ -11,6 +11,8 @@
 //Represente un plateau
 typedef struct {
     char plateau[TAILLE_PLATEAU][TAILLE_PLATEAU];
+    char barriereHorizontal[TAILLE_PLATEAU][TAILLE_PLATEAU ];
+    char barriereVerticale[TAILLE_PLATEAU][TAILLE_PLATEAU];
 } Plateau;
 
 
