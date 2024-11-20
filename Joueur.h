@@ -2,7 +2,9 @@
 // Created by Bigeard on 11/16/2024.
 //
 
-
+//8.0
+//0.8
+//
 #ifndef JOUEUR_H
 #define JOUEUR_H
 

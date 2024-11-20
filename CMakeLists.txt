@@ -22,4 +22,8 @@ add_executable(Quoridor2024
         JoueurDao.h
         PartieDao.c
         PartieDao.h
+        ActionIhm.c
+        ActionIhm.h
+        Action.c
+        Barriere.c
 )
