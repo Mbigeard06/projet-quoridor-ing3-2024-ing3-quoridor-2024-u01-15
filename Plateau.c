@@ -98,30 +98,6 @@ void AfficherPlateau(Plateau *p) {
     }
 }
 
-//Determine si la partie est gagnée par le joueur
-bool AGagne(Joueur joueur, int indiceJoueur) {
-    if (indiceJoueur == 1) {
-        if(joueur.position.x == TAILLE_PLATEAU - 1) {
-            return true;
-        }
-    }
-    else if (indiceJoueur == 2) {
-        if(joueur.position.x == 0) {
-            return true;
-        }
-    }
-    else if (indiceJoueur == 3) {
-        if(joueur.position.y == TAILLE_PLATEAU - 1) {
-            return true;
-        }
-    }
-    else {
-        if(joueur.position.y == 0) {
-            return true;
-        }
-    }
-}
-
 // Renvoie true si le joueur ne sort pas des limites du plateau
 bool LimitePlateau(Position position, Plateau* plateau, TypeDeplacement deplacement) {
     bool res = false;
@@ -205,7 +181,7 @@ bool VerifierJoueur(Position position, Plateau* plateau, TypeDeplacement deplace
                 }
         break;
         case Bas:
-                if (plateau->plateau[position.x + 1][position.y] != 'b') {
+                if (plateau->plateau[position.x + 1][position.y] != ' ') {
                     JoueurDevant = true;
                 }
         break;
@@ -239,7 +215,7 @@ bool VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement depla
                 res = true;
             }
             else {
-                //Implémenter logique
+                printf("\n Joueur devant");
             }
         }
         else {
@@ -249,22 +225,42 @@ bool VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement depla
     else {
         printf("\nDéplacement impossible, vous debez rester dans les limites du tableau");
     }
+    return res;
 }
 
 //Renvoi true si le déplacement à abouti et false sinon
 bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
+    printf("Deplacer Joueur()\n");
     bool res = false;
-    //Recupérer le type de déplacement
-    TypeDeplacement choixDeplacement =  AfficherDeplacement();
-    //Le joueur à choisi un déplacement
-    if(choixDeplacement != Sortie) {
-        if(VerifierDeplacement(joueur, plateau, choixDeplacement)) {
-            //On enregistre dans la last action la postion du joueur
-            lastAction->position = joueur->position;
-            //Mettre à jour nouvelle position joueur
-            joueur->position = CalculerPosition(joueur->position, choixDeplacement);
-            //Mettre à jour le plateau
-            PlacerPion(plateau, joueur->position, joueur);
+    bool sortir = false;
+    while(!sortir) {
+        //Recupérer le type de déplacement
+        TypeDeplacement choixDeplacement =  AfficherDeplacement();
+
+        //Le joueur à choisi un déplacement
+        if(choixDeplacement != Sortie) {
+            if(VerifierDeplacement(joueur, plateau, choixDeplacement)) {
+                printf("Deplacement validé");
+
+                //On enregistre la position du joueur
+                lastAction->position = joueur->position;
+
+                //Changer la position du joueur
+                plateau->plateau[joueur->position.x][joueur->position.y] = ' ';
+                //Calculer nouvelle position
+                joueur->position = CalculerPosition(joueur->position, choixDeplacement);
+                //Placer le joueur sur le plateau
+                PlacerPion(plateau, joueur->position, joueur);
+                //Afficher plateau modifié
+                AfficherPlateau(plateau);
+                //Action validé
+                res = true;
+                sortir = true;
+            }
+        }
+        //L'utilisateur ne veut plus se déplacer
+        else {
+            sortir = true;
         }
     }
     return res;

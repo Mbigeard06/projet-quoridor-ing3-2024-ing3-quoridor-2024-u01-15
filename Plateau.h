@@ -8,6 +8,7 @@
 #include "Joueur.h"
 #include "DeplacementIhm.h"
 #include "Barriere.h"
+#include "JoueurDao.h"
 
 
 //Represente un plateau

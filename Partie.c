@@ -8,6 +8,31 @@
 #include <time.h>
 
 
+
+//Determine si la partie est gagnée par le joueur
+bool AGagne(Joueur joueur, int indiceJoueur) {
+    if (indiceJoueur == 1) {
+        if(joueur.position.x == TAILLE_PLATEAU - 1) {
+            return true;
+        }
+    }
+    else if (indiceJoueur == 2) {
+        if(joueur.position.x == 0) {
+            return true;
+        }
+    }
+    else if (indiceJoueur == 3) {
+        if(joueur.position.y == TAILLE_PLATEAU - 1) {
+            return true;
+        }
+    }
+    else {
+        if(joueur.position.y == 0) {
+            return true;
+        }
+    }
+}
+
 //Définie les informations sur les différents joueur
 void ObtenirJoueur(Partie* partie) {
     printf("Combien de joueurs participent (2 ou 4) ?\n");
@@ -96,13 +121,9 @@ bool Tour(Partie* partie) {
         switch (action) {
             case 1:
                 if(DeplacerJoueur(partie->joueurs, &partie->plateau, partie->dernierAction)) {
+                    printf("Il a reussi");
                     //Déplacement réalisé
                     finTour = true;
-                    //Tour suivant
-                }
-            //Deplacement non réussi
-                else {
-                    return false;
                 }
             break;
             case 2:
@@ -123,12 +144,16 @@ bool Tour(Partie* partie) {
             break;
         }
     }
+    return finTour;
 }
 
 //Passer au tour suivant. Fonction récursive
 void TourSuivant(Partie* partie){
     //On passe au joueur suivant
-    if(partie->indiceJoueur < partie->nbJoueur - 1)partie->indiceJoueur++;
+    if(partie->indiceJoueur < partie->nbJoueur - 1) {
+        partie->indiceJoueur++;
+        printf("Indice joueur : %d", partie->indiceJoueur);
+    }
     else {
         partie->indiceJoueur = 0;
     }
@@ -140,13 +165,14 @@ void TourSuivant(Partie* partie){
 //Initialise la partie
 Partie* InitialiserPartie() {
     Partie partie;
+    Action lastAction;
     //Pas de joueur
     partie.indiceJoueur = -1;
     InitialiserJoueurs(&partie);
     InitialiserPlateau(&partie.plateau,partie.joueurs, partie.nbJoueur);
     AfficherPlateau(&partie.plateau);
     //Pas d'action avant
-    partie.dernierAction =NULL;
+    partie.dernierAction = &lastAction;
     //Lancement du premier tour
     TourSuivant(&partie);
     return NULL;

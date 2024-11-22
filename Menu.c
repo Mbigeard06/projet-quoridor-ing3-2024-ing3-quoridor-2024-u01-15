@@ -44,7 +44,6 @@ int MenuIhm() {
 
     int choix;
     printf("Entrez votre choix (1-5) : ");
-
     if (scanf("%d", &choix) != 1) {
         // Si la saisie échoue (par exemple, une lettre est entrée)
         ViderTampon();  // Vider le tampon pour éliminer la saisie invalide
