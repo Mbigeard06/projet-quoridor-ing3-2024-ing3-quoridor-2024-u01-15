@@ -4,7 +4,7 @@
 
 #ifndef DEPLACEMENTIHM_H
 #define DEPLACEMENTIHM_H
-#include "Deplacement.h"
+#include "Joueur.h"
 
 TypeDeplacement AfficherDeplacement();
 

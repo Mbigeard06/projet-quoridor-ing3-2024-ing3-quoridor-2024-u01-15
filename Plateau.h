@@ -5,8 +5,8 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 #define TAILLE_PLATEAU 9
-#include "Position.h"
 #include "Joueur.h"
+#include "Barriere.h"
 
 
 //Represente un plateau

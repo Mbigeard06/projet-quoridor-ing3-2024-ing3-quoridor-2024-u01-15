@@ -3,6 +3,8 @@
 //
 #include "Joueur.h"
 
+#include <stdio.h>
+
 //Modifier le nombre de barriere d'un joueure
 void AttribuerBarriere(Joueur* joueurs, int nbBarriere) {
     joueurs->nbrBarriere += nbBarriere;
@@ -19,4 +21,25 @@ void SetJoueurPosition(Joueur* joueur,Position position) {
     joueur->position.y = position.y;
 }
 
+
+
+//Calculer la position
+Position CalculerPosition(Position position, TypeDeplacement deplacement) {
+    Position newPosition = position;
+    switch (deplacement) {
+        case Haut:
+            newPosition.x -= 1;
+        break;
+        case  Bas:
+            newPosition.x += 1;
+        break;
+        case Gauche:
+            newPosition.y -= 1;
+        break;
+        case Droit:
+            newPosition.y += 1;
+        break;
+    }
+    return newPosition;
+}
 

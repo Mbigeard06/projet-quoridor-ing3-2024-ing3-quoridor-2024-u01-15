@@ -5,8 +5,8 @@
 #ifndef ACTIONIHM_H
 #define ACTIONIHM_H
 #include <stdio.h>
+#include "Joueur.h"
 
-#include "Action.h"
 
 //Afficher les différentes actions faisable
 int ActionIhm();

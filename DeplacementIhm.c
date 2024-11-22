@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 
-#include "Deplacement.h"
+#include "Joueur.h"
 
 // Fonction pour afficher les options de déplacement
 TypeDeplacement AfficherDeplacement() {

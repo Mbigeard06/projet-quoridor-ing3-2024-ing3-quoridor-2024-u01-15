@@ -6,7 +6,6 @@
 #define PARTIE_H
 #include "Joueur.h"
 #include "Plateau.h"
-#include "Action.h"
 
 
 typedef struct {

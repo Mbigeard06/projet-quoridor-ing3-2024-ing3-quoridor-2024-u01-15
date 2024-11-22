@@ -4,7 +4,7 @@
 
 #ifndef BARRIERE_H
 #define BARRIERE_H
-#include "Position.h"
+#include "Joueur.h"
 
 //Represente une barriere
 typedef struct {
