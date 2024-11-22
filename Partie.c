@@ -120,7 +120,7 @@ bool Tour(Partie* partie) {
         //Traitement de l'input utilisateurs
         switch (action) {
             case 1:
-                if(DeplacerJoueur(partie->joueurs, &partie->plateau, partie->dernierAction)) {
+                if(DeplacerJoueur(partie->joueurs[partie->indiceJoueur], &partie->plateau, partie->dernierAction)) {
                     printf("Il a reussi");
                     //Déplacement réalisé
                     finTour = true;
