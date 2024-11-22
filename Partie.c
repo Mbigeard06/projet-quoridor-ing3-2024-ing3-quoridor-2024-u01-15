@@ -9,28 +9,30 @@
 
 
 
-//Determine si la partie est gagnée par le joueur
+//Determine si la partie est gagnée par le joueur Fausse pour le moment
 bool AGagne(Joueur joueur, int indiceJoueur) {
+    bool gagne = false;
     if (indiceJoueur == 1) {
         if(joueur.position.x == TAILLE_PLATEAU - 1) {
-            return true;
+            gagne = true;
         }
     }
     else if (indiceJoueur == 2) {
         if(joueur.position.x == 0) {
-            return true;
+            gagne = true;
         }
     }
     else if (indiceJoueur == 3) {
         if(joueur.position.y == TAILLE_PLATEAU - 1) {
-            return true;
+            gagne = true;
         }
     }
     else {
         if(joueur.position.y == 0) {
-            return true;
+            gagne = true;
         }
     }
+    return false;
 }
 
 //Définie les informations sur les différents joueur
@@ -109,8 +111,9 @@ void InitialiserJoueurs(Partie* partie) {
     printf("%d",partie->joueurs[0].nbrBarriere);
 }
 
-//Lance le tour d'un joueur
+//Lance le tour d'un joueur =>Renvoi true si tour suivant
 bool Tour(Partie* partie) {
+    bool tourSuivant = true;
     bool finTour = false;
     //Récupération de l'action
     while(!finTour) {
@@ -121,9 +124,12 @@ bool Tour(Partie* partie) {
         switch (action) {
             case 1:
                 if(DeplacerJoueur(&partie->joueurs[partie->indiceJoueur], &partie->plateau, partie->dernierAction)) {
-                    printf("Il a reussi");
                     //Déplacement réalisé
                     finTour = true;
+                    //Fin de la partie
+                    if(AGagne(partie->joueurs[partie->indiceJoueur],partie->indiceJoueur)) {
+                        tourSuivant = false;
+                    }
                 }
             break;
             case 2:
@@ -144,7 +150,7 @@ bool Tour(Partie* partie) {
             break;
         }
     }
-    return finTour;
+    return tourSuivant;
 }
 
 //Passer au tour suivant. Fonction récursive
