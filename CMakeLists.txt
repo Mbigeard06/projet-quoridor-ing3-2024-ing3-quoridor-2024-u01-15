@@ -21,8 +21,6 @@ add_executable(Quoridor2024
         ActionIhm.c
         ActionIhm.h
         Barriere.c
-        Tour.c
-        Tour.h
         DeplacementIhm.h
         DeplacementIhm.c
 )

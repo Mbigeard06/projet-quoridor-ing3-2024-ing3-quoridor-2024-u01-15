@@ -6,6 +6,7 @@
 #define PLATEAU_H
 #define TAILLE_PLATEAU 9
 #include "Joueur.h"
+#include "DeplacementIhm.h"
 #include "Barriere.h"
 
 

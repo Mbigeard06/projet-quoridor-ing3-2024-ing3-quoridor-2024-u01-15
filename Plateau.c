@@ -6,6 +6,8 @@
 #include <stdio.h>
 
 
+
+
 // Fonction principale pour initialiser les joueurs sur le plateur
 void InitialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {
     // Définir les positions de base des joueurs (en fonction du nombre de joueurs)
