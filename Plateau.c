@@ -203,6 +203,21 @@ bool VerifierJoueur(Position position, Plateau* plateau, TypeDeplacement deplace
     return JoueurDevant;
 }
 
+//Attribuer une nouvelle position au joueur
+void AttribuerNouvellePostionJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction, Position oldPosition, Position newPosition) {
+    //On enregistre la position du joueur
+    lastAction->position = oldPosition;
+
+    //Changer la position du joueur
+    plateau->plateau[oldPosition.x][oldPosition.y] = ' ';
+
+    //Calculer nouvelle position
+    joueur->position = newPosition;
+
+    //Placer le joueur sur le plateau
+    PlacerPion(plateau, joueur->position, joueur);
+}
+
 //Sautuer un joueur. => true si le joueur à pu être sauté correctement
 bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement, Action* lastAction) {
     bool res = false;
@@ -216,16 +231,8 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement,
     if(LimitePlateau(joueur->position, plateau, deplacement) && !VerifierBarriere(joueur->position, plateau, deplacement) && !VerifierJoueur(joueur->position, plateau, deplacement))  {
         printf("Deplacement validé");
 
-        //On enregistre la position du joueur
-        lastAction->position = oldPosition;
-
-        //Changer la position du joueur
-        plateau->plateau[oldPosition.x][oldPosition.y] = ' ';
-
-        //Calculer nouvelle position
-        joueur->position = CalculerPosition(joueur->position, deplacement);
-        //Placer le joueur sur le plateau
-        PlacerPion(plateau, joueur->position, joueur);
+        //Attribuer nouveau déplacement
+        AttribuerNouvellePostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, deplacement));
 
         //Action validé
         res = true;
@@ -239,18 +246,11 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement,
             //Le joueur à choisi un déplacement
             if(choixDeplacement != Sortie) {
                 if(LimitePlateau(joueur->position, plateau, deplacement) && !VerifierBarriere(joueur->position, plateau, deplacement) && !VerifierJoueur(joueur->position, plateau, deplacement)) {
+                    //Deplacement validé
                     printf("Deplacement validé");
 
-                    //On enregistre la position du joueur
-                    lastAction->position = oldPosition;
-
-                    //Changer la position du joueur
-                    plateau->plateau[oldPosition.x][oldPosition.y] = ' ';
-
-                    //Calculer nouvelle position
-                    joueur->position = CalculerPosition(joueur->position, choixDeplacement);
-                    //Placer le joueur sur le plateau
-                    PlacerPion(plateau, joueur->position, joueur);
+                    //Attribuer nouveau déplacement
+                    AttribuerNouvellePostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, choixDeplacement));
 
                     //Action validé
                     res = true;
@@ -294,32 +294,27 @@ int VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement deplac
 
 //Renvoi true si le déplacement à abouti et false sinon
 bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
+
     printf("Deplacer Joueur() qui est actuellemetn en x : %d, y : %d\n", joueur->position.x, joueur->position.y);
     bool res = false;
     bool sortir = false;
+
     while(!sortir) {
+
         //Recupérer le type de déplacement
         TypeDeplacement choixDeplacement =  AfficherDeplacement();
 
-        //Le joueur à choisi un déplacement
         if(choixDeplacement != Sortie) {
+            //Deplacement selectionné
             int verifierDeplacement = VerifierDeplacement(joueur, plateau, choixDeplacement);
             if(verifierDeplacement == 1) {
                 printf("Deplacement validé");
 
-                //On enregistre la position du joueur
-                lastAction->position = joueur->position;
-
-                //Changer la position du joueur
-                plateau->plateau[joueur->position.x][joueur->position.y] = ' ';
-
-                //Calculer nouvelle position
-                joueur->position = CalculerPosition(joueur->position, choixDeplacement);
-
-                //Placer le joueur sur le plateau
-                PlacerPion(plateau, joueur->position, joueur);
+                //Attribution nouvelle position
+                AttribuerNouvellePostionJoueur(joueur, plateau, lastAction, joueur->position, CalculerPosition(joueur->position, choixDeplacement));
 
                 printf("New Position x : %d, y : %d", joueur->position.x, joueur->position.y);
+
                 //Action validé
                 res = true;
                 sortir = true;
@@ -327,19 +322,19 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
             else if(verifierDeplacement == 2) {
                 bool sauterJoueur = SauterJoueur(joueur, plateau, choixDeplacement, lastAction);
                 if(sauterJoueur) {
-                    //Changer la position du joueur
+                    //Saut reussi
                     printf(" Personne sautée : %c",plateau->plateau[joueur->position.x][joueur->position.y]);
                     res = true;
                     sortir = true;
                 }
-                //Le joueur annule le déplacement
                 else {
+                    //Saut annulé
                     printf("L'utilisateur n a pas pu sauter");
                     sortir = true;
                 }
             }
         }
-        //L'utilisateur ne veut plus se déplacer
+        //Retour au menu d'action
         else {
             printf("L'utilisateur ne veut plus se déplacer");
             sortir = true;
