@@ -9,7 +9,7 @@
 
 
 //Afficher les différentes actions faisable
-int ActionIhm();
+int ActionIhm(Joueur joueur);
 //Afficher que l'action est impossible
 void ActionImpossible(TypeAction actionType);
 

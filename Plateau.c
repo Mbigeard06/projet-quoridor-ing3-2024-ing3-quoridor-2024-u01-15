@@ -203,19 +203,83 @@ bool VerifierJoueur(Position position, Plateau* plateau, TypeDeplacement deplace
     return JoueurDevant;
 }
 
-
-bool VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement) {
+//Sautuer un joueur. => true si le joueur à pu être sauté correctement
+bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement, Action* lastAction) {
     bool res = false;
+    //Prendre la place du joueur sauter pour calculer les déplacements possible
+    Position newPosition = CalculerPosition(joueur->position, deplacement);
+    //Enregistrement de l'ancienne position
+    Position oldPosition = joueur->position;
+    //Attribution nouvelle position
+    joueur->position = newPosition;
+    //Si le déplacement est valide
+    if(LimitePlateau(joueur->position, plateau, deplacement) && !VerifierBarriere(joueur->position, plateau, deplacement) && !VerifierJoueur(joueur->position, plateau, deplacement))  {
+        printf("Deplacement validé");
+
+        //On enregistre la position du joueur
+        lastAction->position = oldPosition;
+
+        //Changer la position du joueur
+        plateau->plateau[oldPosition.x][oldPosition.y] = ' ';
+
+        //Calculer nouvelle position
+        joueur->position = CalculerPosition(joueur->position, deplacement);
+        //Placer le joueur sur le plateau
+        PlacerPion(plateau, joueur->position, joueur);
+
+        //Action validé
+        res = true;
+    }
+    else {
+        printf("La case qui suit le joueur est inaccessible, veuillez bifurquer !");
+        //Recupérer le type de déplacement
+        bool sortir = false;
+        while(!sortir) {
+            TypeDeplacement choixDeplacement =  AfficherDeplacement();
+            //Le joueur à choisi un déplacement
+            if(choixDeplacement != Sortie) {
+                if(LimitePlateau(joueur->position, plateau, deplacement) && !VerifierBarriere(joueur->position, plateau, deplacement) && !VerifierJoueur(joueur->position, plateau, deplacement)) {
+                    printf("Deplacement validé");
+
+                    //On enregistre la position du joueur
+                    lastAction->position = oldPosition;
+
+                    //Changer la position du joueur
+                    plateau->plateau[oldPosition.x][oldPosition.y] = ' ';
+
+                    //Calculer nouvelle position
+                    joueur->position = CalculerPosition(joueur->position, choixDeplacement);
+                    //Placer le joueur sur le plateau
+                    PlacerPion(plateau, joueur->position, joueur);
+
+                    //Action validé
+                    res = true;
+                    sortir = true;
+                }
+            }
+            //L'utilisateur ne veut plus se déplacer
+            else {
+                joueur->position = oldPosition;
+                sortir = true;
+            }
+        }
+    }
+}
+
+//0 si erreur 1 si reussi 2 si sauté
+int VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement) {
+    int res = 0;
     //Le joueur reste dans les limites du plateau
     if(LimitePlateau(joueur->position, plateau, deplacement)) {
         //Pas de barriere devant
         if(!VerifierBarriere(joueur->position, plateau, deplacement)) {
             //Pas de joueur dans la case
             if(!VerifierJoueur(joueur->position, plateau, deplacement)) {
-                res = true;
+                res = 1;
             }
+            //Joeur à sauter
             else {
-                printf("\n Joueur devant");
+                res = 2;
             }
         }
         else {
@@ -230,7 +294,7 @@ bool VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement depla
 
 //Renvoi true si le déplacement à abouti et false sinon
 bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
-    printf("Deplacer Joueur()\n");
+    printf("Deplacer Joueur() qui est actuellemetn en x : %d, y : %d\n", joueur->position.x, joueur->position.y);
     bool res = false;
     bool sortir = false;
     while(!sortir) {
@@ -239,7 +303,8 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
 
         //Le joueur à choisi un déplacement
         if(choixDeplacement != Sortie) {
-            if(VerifierDeplacement(joueur, plateau, choixDeplacement)) {
+            int verifierDeplacement = VerifierDeplacement(joueur, plateau, choixDeplacement);
+            if(verifierDeplacement == 1) {
                 printf("Deplacement validé");
 
                 //On enregistre la position du joueur
@@ -247,21 +312,39 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
 
                 //Changer la position du joueur
                 plateau->plateau[joueur->position.x][joueur->position.y] = ' ';
+
                 //Calculer nouvelle position
                 joueur->position = CalculerPosition(joueur->position, choixDeplacement);
+
                 //Placer le joueur sur le plateau
                 PlacerPion(plateau, joueur->position, joueur);
-                //Afficher plateau modifié
-                AfficherPlateau(plateau);
+
+                printf("New Position x : %d, y : %d", joueur->position.x, joueur->position.y);
                 //Action validé
                 res = true;
                 sortir = true;
             }
+            else if(verifierDeplacement == 2) {
+                bool sauterJoueur = SauterJoueur(joueur, plateau, choixDeplacement, lastAction);
+                if(sauterJoueur) {
+                    //Changer la position du joueur
+                    printf(" Personne sautée : %c",plateau->plateau[joueur->position.x][joueur->position.y]);
+                    res = true;
+                    sortir = true;
+                }
+                //Le joueur annule le déplacement
+                else {
+                    printf("L'utilisateur n a pas pu sauter");
+                    sortir = true;
+                }
+            }
         }
         //L'utilisateur ne veut plus se déplacer
         else {
+            printf("L'utilisateur ne veut plus se déplacer");
             sortir = true;
         }
+        AfficherPlateau(plateau);
     }
     return res;
 }
