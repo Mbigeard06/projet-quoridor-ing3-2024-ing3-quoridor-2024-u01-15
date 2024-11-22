@@ -7,10 +7,9 @@
 #include <stdio.h>
 
 #include "Action.h"
-#include "Joueur.h"
 
 //Afficher les différentes actions faisable
-int ActionIhm(Joueur joueur);
+int ActionIhm();
 //Afficher que l'action est impossible
 void ActionImpossible(TypeAction actionType);
 

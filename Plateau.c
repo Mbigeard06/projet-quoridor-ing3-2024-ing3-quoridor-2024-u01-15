@@ -3,12 +3,8 @@
 //
 
 #include "Plateau.h"
-
 #include <stdio.h>
 
-#include "Joueur.h"
-#include "Position.h"
-#include "Barriere.h"
 
 // Fonction principale pour initialiser les joueurs sur le plateur
 void InitialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {

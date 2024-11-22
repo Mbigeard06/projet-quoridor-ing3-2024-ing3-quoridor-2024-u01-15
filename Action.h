@@ -13,7 +13,7 @@
 typedef enum {
     Deplacement,
     Annulation,
-    Barriere
+    PoserBarriere
 } TypeAction;
 
 //Represente une action
@@ -30,5 +30,6 @@ typedef struct {
 } Action;
 
 //Effectuer une action
-bool Actionner(Action* action, Plateau* plateau, Action* lastAction);
+bool EstGagne(Joueur joueur, int indiceJoueur);
+bool Actionner(int numAction, Plateau* plateau, Action* lastAction, Joueur* joueur);
 #endif //ACTION_H

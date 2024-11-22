@@ -14,6 +14,7 @@ int ActionIhm(Joueur joueur) {
         printf("\n2/ Poser une barriere");
         printf("\n3/ Passer son tour");
         printf("\n4/ Annuler la derniere action");
+        printf("\n4/ Sauvegarder et quitter la partie");
         printf("\nVotre choix : ");
 
         // Vérification de la validité de l'entrée
@@ -21,7 +22,7 @@ int ActionIhm(Joueur joueur) {
             // Si l'entrée n'est pas un entier, vider le tampon et afficher un message d'erreur
             while (getchar() != '\n'); // Vider le tampon
             printf("Entree invalide. Veuillez saisir un nombre entier entre 1 et 4.\n");
-        } else if (choix < 1 || choix > 4) {
+        } else if (choix < 1 || choix > 5) {
             // Si l'entrée n'est pas dans la plage valide
             printf("Choix invalide. Veuillez saisir un nombre entre 1 et 4.\n");
         } else {

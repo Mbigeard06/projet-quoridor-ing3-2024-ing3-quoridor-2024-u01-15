@@ -4,12 +4,9 @@
 
 #include "Partie.h"
 #include <stdio.h>
-#include "Joueur.h"
 #include <stdlib.h>
 #include <time.h>
 
-#include "ActionIhm.h"
-#include "JoueurDao.h"
 
 //Définie les informations sur les différents joueur
 void ObtenirJoueur(Partie* partie) {
@@ -87,15 +84,16 @@ void InitialiserJoueurs(Partie* partie) {
     printf("%d",partie->joueurs[0].nbrBarriere);
 }
 
-//Passer au tour suivant
+//Passer au tour suivant. Fonction récursive
 void TourSuivant(Partie* partie){
     //On passe au joueur suivant
     if(partie->indiceJoueur < partie->nbJoueur - 1)partie->indiceJoueur++;
     else {
         partie->indiceJoueur = 0;
     }
-    //Afficher les actions possibles
-    ActionIhm(partie->joueurs[partie->indiceJoueur]);
+    if(Tour(partie)) {
+        TourSuivant(partie);
+    }
 };
 
 //Initialise la partie
@@ -115,8 +113,6 @@ Partie* InitialiserPartie() {
 
 //Calculer ordre de passage
 void CalculerPassage(Joueur* joueur[]){};
-//Deplacer un joueur
-void DeplacerJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement){};
 //Annuler l'action précédente
 void AnnulerAction(Joueur* joueur[], int indiceJoueur, int nbJoueur, Action dernierAction){};
 //Sauvegarder Partie

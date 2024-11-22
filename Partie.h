@@ -6,8 +6,8 @@
 #define PARTIE_H
 #include "Joueur.h"
 #include "Plateau.h"
-#include "Deplacement.h"
 #include "Action.h"
+
 
 typedef struct {
     //Joueur en cours de tour
@@ -28,8 +28,6 @@ typedef struct {
 Partie* InitialiserPartie();
 //Calculer ordre de passage
 void CalculerPassage(Joueur* joueur[]);
-//Deplacer un joueur
-void DeplacerJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement);
 //Placer une barrière
 void PlacerBarriere(Joueur* joueur, Position position);
 //Passer au tour suivant

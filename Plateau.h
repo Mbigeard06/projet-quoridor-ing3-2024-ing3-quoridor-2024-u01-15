@@ -5,8 +5,9 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 #define TAILLE_PLATEAU 9
-#include "Joueur.h"
 #include "Position.h"
+#include "Joueur.h"
+
 
 //Represente un plateau
 typedef struct {

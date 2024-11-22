@@ -4,8 +4,6 @@
 #include "Menu.h"
 #include <stdio.h>
 
-#include "Partie.h"
-
 //Vide le tampon
 void ViderTampon() {
     while (getchar() != '\n');  // Lire et ignorer tous les caractères jusqu'au saut de ligne

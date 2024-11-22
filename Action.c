@@ -2,10 +2,10 @@
 // Created by Bigeard on 11/20/2024.
 //
 
+#include "Action.h"
+
 #include <stdbool.h>
-#include <stdio.h>
-#include "Joueur.h"
-#include "Plateau.h"
+
 
 //Determine si la partie est gagnée par le joueur
 bool EstGagne(Joueur joueur, int indiceJoueur) {
@@ -29,4 +29,7 @@ bool EstGagne(Joueur joueur, int indiceJoueur) {
             return true;
         }
     }
+}
+
+bool Actionner(int numAction, Plateau* plateau, Action* lastAction, Joueur* joueur) {
 }

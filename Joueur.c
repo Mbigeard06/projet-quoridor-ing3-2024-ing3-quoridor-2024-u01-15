@@ -18,3 +18,5 @@ void SetJoueurPosition(Joueur* joueur,Position position) {
     joueur->position.x = position.x;
     joueur->position.y = position.y;
 }
+
+
