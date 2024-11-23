@@ -6,6 +6,6 @@
 #define DEPLACEMENTIHM_H
 #include "Joueur.h"
 
-TypeDeplacement AfficherDeplacement();
+Direction AfficherDeplacement();
 
 #endif //DEPLACEMENTIHM_H

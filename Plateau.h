@@ -9,6 +9,7 @@
 #include "DeplacementIhm.h"
 #include "Barriere.h"
 #include "JoueurDao.h"
+#include "ActionIhm.h"
 
 
 //Represente un plateau

@@ -24,7 +24,7 @@ void SetJoueurPosition(Joueur* joueur,Position position) {
 
 
 //Calculer la position
-Position CalculerPosition(Position position, TypeDeplacement deplacement) {
+Position CalculerPosition(Position position, Direction deplacement) {
     Position newPosition = position;
     switch (deplacement) {
         case Haut:

@@ -51,7 +51,7 @@ typedef enum {
     Gauche,
     Droit,
     Sortie//Affiche à l'écran les différents types de déplacement
-} TypeDeplacement;
+} Direction;
 
 //Deplacer le joueur (change ces coordonnées)
 void SetJoueurPosition(Joueur* joueur,Position position);
@@ -62,7 +62,7 @@ void AttribuerPion(Joueur* joueur, char pion);
 //Effectuer une action
 bool AGagne(Joueur joueur, int indiceJoueur);
 //Calcule la nouvelle position suite à un déplacement
-Position CalculerPosition(Position position, TypeDeplacement deplacement);
+Position CalculerPosition(Position position, Direction direction);
 
 
 

@@ -9,8 +9,8 @@
 #include "Joueur.h"
 
 // Fonction pour afficher les options de déplacement
-TypeDeplacement AfficherDeplacement() {
-    TypeDeplacement deplacement = Sortie; // Initialiser à Sortie
+Direction AfficherDeplacement() {
+    Direction deplacement = Sortie; // Initialiser à Sortie
     char direction = ' '; // Initialiser à un caractère vide
 
     // Affichage des options de déplacement

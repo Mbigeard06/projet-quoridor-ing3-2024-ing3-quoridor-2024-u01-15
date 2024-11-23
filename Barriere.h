@@ -10,6 +10,8 @@
 typedef struct {
     //Position de la barriere
     Position position;
+    //Direction de la barriere
+    Direction direction;
     //Type v ou h
     char type;
 } Barriere;

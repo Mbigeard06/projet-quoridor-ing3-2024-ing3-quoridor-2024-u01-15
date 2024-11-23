@@ -45,7 +45,7 @@ void PlacerPion(Plateau *p, Position pos, Joueur* joueur) {
 
 
 //Placer une barriere
-void PlacerBarriere(Plateau *p, Barriere barriere) {
+void SetBarriere(Plateau *p, Barriere barriere) {
     if(barriere.type == 'h') {
         for(int i = 0; i < 2; i++) {
             p->barriereHorizontal[barriere.position.x][barriere.position.y + i] = 'b';
@@ -99,7 +99,7 @@ void AfficherPlateau(Plateau *p) {
 }
 
 // Renvoie true si le joueur ne sort pas des limites du plateau
-bool LimitePlateau(Position position, Plateau* plateau, TypeDeplacement deplacement) {
+bool LimitePlateau(Position position, Plateau* plateau, Direction deplacement) {
     bool res = false;
 
     switch(deplacement) {
@@ -135,7 +135,7 @@ bool LimitePlateau(Position position, Plateau* plateau, TypeDeplacement deplacem
 }
 
 // Vérifie si une barrière est présente devant le joueur dans la direction du déplacement
-bool VerifierBarriere(Position position, Plateau* plateau, TypeDeplacement deplacement) {
+bool VerifierBarriere(Position position, Plateau* plateau, Direction deplacement) {
     bool barriereDevant = false;
 
     switch(deplacement) {
@@ -171,7 +171,7 @@ bool VerifierBarriere(Position position, Plateau* plateau, TypeDeplacement depla
 }
 
 // Vérifie si une barrière est présente devant le joueur dans la direction du déplacement
-bool VerifierJoueur(Position position, Plateau* plateau, TypeDeplacement deplacement) {
+bool VerifierJoueur(Position position, Plateau* plateau, Direction deplacement) {
     bool JoueurDevant = false;
 
     switch(deplacement) {
@@ -219,7 +219,7 @@ void AttribuerNouvellePostionJoueur(Joueur* joueur, Plateau* plateau, Action* la
 }
 
 //Sautuer un joueur. => true si le joueur à pu être sauté correctement
-bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement, Action* lastAction) {
+bool SauterJoueur(Joueur* joueur, Plateau* plateau, Direction deplacement, Action* lastAction) {
     bool res = false;
     //Prendre la place du joueur sauter pour calculer les déplacements possible
     Position newPosition = CalculerPosition(joueur->position, deplacement);
@@ -242,7 +242,7 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement,
         //Recupérer le type de déplacement
         bool sortir = false;
         while(!sortir) {
-            TypeDeplacement choixDeplacement =  AfficherDeplacement();
+            Direction choixDeplacement =  AfficherDeplacement();
             //Le joueur à choisi un déplacement
             if(choixDeplacement != Sortie) {
                 if(LimitePlateau(joueur->position, plateau, deplacement) && !VerifierBarriere(joueur->position, plateau, deplacement) && !VerifierJoueur(joueur->position, plateau, deplacement)) {
@@ -267,7 +267,7 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement,
 }
 
 //0 si erreur 1 si reussi 2 si sauté
-int VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement deplacement) {
+int VerifierDeplacement(Joueur* joueur, Plateau* plateau, Direction deplacement) {
     int res = 0;
     //Le joueur reste dans les limites du plateau
     if(LimitePlateau(joueur->position, plateau, deplacement)) {
@@ -295,14 +295,14 @@ int VerifierDeplacement(Joueur* joueur, Plateau* plateau, TypeDeplacement deplac
 //Renvoi true si le déplacement à abouti et false sinon
 bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
 
-    printf("Deplacer Joueur() qui est actuellemetn en x : %d, y : %d\n", joueur->position.x, joueur->position.y);
+    printf("Deplacer Joueur | Position actuelle x : %d  y : %d\n", joueur->position.x, joueur->position.y);
     bool res = false;
     bool sortir = false;
 
     while(!sortir) {
 
         //Recupérer le type de déplacement
-        TypeDeplacement choixDeplacement =  AfficherDeplacement();
+        Direction choixDeplacement =  AfficherDeplacement();
 
         if(choixDeplacement != Sortie) {
             //Deplacement selectionné
@@ -322,26 +322,33 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
             else if(verifierDeplacement == 2) {
                 bool sauterJoueur = SauterJoueur(joueur, plateau, choixDeplacement, lastAction);
                 if(sauterJoueur) {
-                    //Saut reussi
-                    printf(" Personne sautée : %c",plateau->plateau[joueur->position.x][joueur->position.y]);
                     res = true;
                     sortir = true;
                 }
                 else {
                     //Saut annulé
-                    printf("L'utilisateur n a pas pu sauter");
+                    printf("L utilisateur n a pas pu sauter");
                     sortir = true;
                 }
             }
         }
         //Retour au menu d'action
         else {
-            printf("L'utilisateur ne veut plus se déplacer");
+            printf("L utilisateur ne veut plus se déplacer");
             sortir = true;
         }
         AfficherPlateau(plateau);
     }
     return res;
+}
+
+bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
+    bool res = false;
+    bool sortir = false;
+    while (!sortir) {
+        //Recuperation barriere
+        Barriere barriere = BarriereIhm(joueur);
+    }
 }
 
 
