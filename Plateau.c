@@ -43,20 +43,43 @@ void PlacerPion(Plateau *p, Position pos, Joueur* joueur) {
     p->plateau[pos.x][pos.y] = joueur->pion;
 }
 
+// Placer/Enlever une barrière
+void SetBarriere(Plateau *p, Barriere barriere, char visuel) {
+    switch (barriere.direction) {
+        case Haut:
+            // Placer une barrière dans la direction "Haut"
+                for (int i = 0; i < 2; i++) {
+                    p->barriereHorizontal[barriere.position.x - i][barriere.position.y] = visuel;
+                }
+        break;
 
-//Placer une barriere
-void SetBarriere(Plateau *p, Barriere barriere) {
-    if(barriere.type == 'h') {
-        for(int i = 0; i < 2; i++) {
-            p->barriereHorizontal[barriere.position.x][barriere.position.y + i] = 'b';
-        }
-    }
-    else {
-        for(int i = 0; i < 2; i++) {
-            p->barriereVerticale[barriere.position.x + i][barriere.position.y] = 'b';
-        }
+        case Bas:
+            // Placer une barrière dans la direction "Bas"
+                for (int i = 0; i < 2; i++) {
+                    p->barriereHorizontal[barriere.position.x + i][barriere.position.y] = visuel;
+                }
+        break;
+
+        case Gauche:
+            // Placer une barrière dans la direction "Gauche"
+                for (int i = 0; i < 2; i++) {
+                    p->barriereVerticale[barriere.position.x][barriere.position.y - i] = visuel;
+                }
+        break;
+
+        case Droit:
+            // Placer une barrière dans la direction "Droit"
+                for (int i = 0; i < 2; i++) {
+                    p->barriereVerticale[barriere.position.x][barriere.position.y + i] = visuel;
+                }
+        break;
+
+        default:
+            printf("Direction invalide pour la barrière.\n");
+        break;
     }
 }
+
 
 
 // Afficher le plateau de jeu avec des bordures et séparations
@@ -170,6 +193,7 @@ bool VerifierBarriere(Position position, Plateau* plateau, Direction deplacement
     return barriereDevant;
 }
 
+
 // Vérifie si une barrière est présente devant le joueur dans la direction du déplacement
 bool VerifierJoueur(Position position, Plateau* plateau, Direction deplacement) {
     bool JoueurDevant = false;
@@ -204,7 +228,7 @@ bool VerifierJoueur(Position position, Plateau* plateau, Direction deplacement) 
 }
 
 //Attribuer une nouvelle position au joueur
-void AttribuerNouvellePostionJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction, Position oldPosition, Position newPosition) {
+void SetPostionJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction, Position oldPosition, Position newPosition) {
     //On enregistre la position du joueur
     lastAction->position = oldPosition;
 
@@ -232,7 +256,7 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, Direction deplacement, Actio
         printf("Deplacement validé");
 
         //Attribuer nouveau déplacement
-        AttribuerNouvellePostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, deplacement));
+        SetPostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, deplacement));
 
         //Action validé
         res = true;
@@ -250,7 +274,7 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, Direction deplacement, Actio
                     printf("Deplacement validé");
 
                     //Attribuer nouveau déplacement
-                    AttribuerNouvellePostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, choixDeplacement));
+                    SetPostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, choixDeplacement));
 
                     //Action validé
                     res = true;
@@ -311,7 +335,7 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
                 printf("Deplacement validé");
 
                 //Attribution nouvelle position
-                AttribuerNouvellePostionJoueur(joueur, plateau, lastAction, joueur->position, CalculerPosition(joueur->position, choixDeplacement));
+                SetPostionJoueur(joueur, plateau, lastAction, joueur->position, CalculerPosition(joueur->position, choixDeplacement));
 
                 printf("New Position x : %d, y : %d", joueur->position.x, joueur->position.y);
 
@@ -342,6 +366,12 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
     return res;
 }
 
+//=>true si la barriere peut être placée
+bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barriere) {
+    return true;
+}
+
+//=>true si la barriere à été placée
 bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
     bool res = false;
     bool sortir = false;

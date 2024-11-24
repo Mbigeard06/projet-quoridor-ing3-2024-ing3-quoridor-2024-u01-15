@@ -42,7 +42,7 @@ Barriere BarriereIhm(Joueur* joueur) {
     // Demander le type de la barrière
     while (!valide) {
         printf("\n| Nombre de barrières disponibles : %d", joueur->nbrBarriere);
-        printf("\n1/ Poser une barrière horizontale");
+        printf("\n1/ Poser une vers ");
         printf("\n2/ Poser une barrière verticale");
         printf("\nVotre choix : ");
 
@@ -54,6 +54,7 @@ Barriere BarriereIhm(Joueur* joueur) {
             // Vérification que l'entrée est bien dans la plage
             printf("Choix invalide. Veuillez saisir 1 pour horizontal ou 2 pour vertical.\n");
         } else {
+            //Recuperer direction de la barriere
             // Si l'entrée est valide, on sort de la boucle
             valide = 1;
         }
