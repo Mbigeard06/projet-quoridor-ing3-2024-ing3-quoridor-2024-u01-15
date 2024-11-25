@@ -4,6 +4,7 @@
 
 #ifndef PARTIE_H
 #define PARTIE_H
+#include "ActionHistorique.h"
 #include "Joueur.h"
 #include "Plateau.h"
 
@@ -16,7 +17,7 @@ typedef struct {
     //Plateau de la partie
     Plateau plateau;
     //Dernier Action
-    Action* dernierAction;
+    struct ActionNode* dernierAction;
     //Joueur de la partie (Allocation dynamique) (tableau de pointeur de joueur)
     Joueur* joueurs;
 } Partie;

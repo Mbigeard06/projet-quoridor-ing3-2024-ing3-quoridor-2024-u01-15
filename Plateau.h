@@ -26,6 +26,7 @@ void InitialiserPlateau(Plateau *p, Joueur *joueurs, int nbJoueurs);
 void PlacerPion(Plateau *p, Position pos, Joueur* joueur);
 //Afficher le plateau
 void AfficherPlateau(Plateau *p);
-
+//Renvoi true si le déplacement à abouti et false sinon
+bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction);
 #endif //PLATEAU_H
 

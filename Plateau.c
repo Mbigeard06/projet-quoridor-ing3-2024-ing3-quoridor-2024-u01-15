@@ -252,7 +252,7 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, Direction deplacement, Actio
     joueur->position = newPosition;
     //Si le déplacement est valide
     if(LimitePlateau(joueur->position, plateau, deplacement) && !VerifierBarriere(joueur->position, plateau, deplacement) && !VerifierJoueur(joueur->position, plateau, deplacement))  {
-        printf("Deplacement validé");
+        printf("Deplacement valide !");
 
         //Attribuer nouveau déplacement
         SetPostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, deplacement));
@@ -271,7 +271,7 @@ bool SauterJoueur(Joueur* joueur, Plateau* plateau, Direction deplacement, Actio
                 printf("Dans le if");
                 if(LimitePlateau(joueur->position, plateau, choixDeplacement) && !VerifierBarriere(joueur->position, plateau, choixDeplacement) && !VerifierJoueur(joueur->position, plateau, choixDeplacement)) {
                     //Deplacement validé
-                    printf("\nDeplacement validé");
+                    printf("\nDeplacement valide");
 
                     //Attribuer nouveau déplacement
                     SetPostionJoueur(joueur, plateau, lastAction, oldPosition, CalculerPosition(joueur->position, choixDeplacement));
@@ -339,7 +339,7 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
                 //Attribution nouvelle position
                 SetPostionJoueur(joueur, plateau, lastAction, joueur->position, CalculerPosition(joueur->position, choixDeplacement));
 
-                printf("New Position x : %d, y : %d", joueur->position.x, joueur->position.y);
+                printf("\nNouvelle position x : %d, y : %d", joueur->position.x, joueur->position.y);
 
                 //Action validé
                 res = true;
@@ -432,7 +432,7 @@ bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barrie
         //Barriere dans les limites
         if(PeutPlacerBarriere(joueur, barriere)) {
             res = true;
-            printf("\nBarriere pose avec succes");
+            printf("\nBarriere pose avec succes !");
         }
         else {
             printf("\nCase hors de portee, rapprochez vous pour mettre une barriere");
@@ -479,6 +479,7 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
             }
         }
     }
+    AfficherPlateau(plateau);
     return res;
 }
 

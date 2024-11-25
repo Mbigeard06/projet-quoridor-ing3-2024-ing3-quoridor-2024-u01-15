@@ -116,6 +116,7 @@ bool Tour(Partie* partie) {
     bool tourSuivant = true;
     bool finTour = false;
     //Récupération de l'action
+    Action tourAction;
     while(!finTour) {
         //Recuperation de l'action
         int action = ActionIhm(partie->joueurs[partie->indiceJoueur]);
@@ -123,10 +124,11 @@ bool Tour(Partie* partie) {
         //Traitement de l'input utilisateurs
         switch (action) {
             case 1:
-                if(DeplacerJoueur(&partie->joueurs[partie->indiceJoueur], &partie->plateau, partie->dernierAction)) {
+                if(DeplacerJoueur(&partie->joueurs[partie->indiceJoueur], &partie->plateau, &tourAction)) {
                     //Déplacement réalisé
                     finTour = true;
                     //Fin de la partie
+                    pushAction(tourAction, partie->dernierAction);
                     if(AGagne(partie->joueurs[partie->indiceJoueur],partie->indiceJoueur)) {
                         tourSuivant = false;
                     }
@@ -174,14 +176,14 @@ void TourSuivant(Partie* partie){
 //Initialise la partie
 Partie* InitialiserPartie() {
     Partie partie;
-    Action lastAction;
+    struct ActionNode lastAction;
     //Pas de joueur
     partie.indiceJoueur = -1;
     InitialiserJoueurs(&partie);
     InitialiserPlateau(&partie.plateau,partie.joueurs, partie.nbJoueur);
     AfficherPlateau(&partie.plateau);
     //Pas d'action avant
-    partie.dernierAction = &lastAction;
+    partie.dernierAction = NULL;
     //Lancement du premier tour
     TourSuivant(&partie);
     return NULL;

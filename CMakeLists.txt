@@ -23,4 +23,6 @@ add_executable(Quoridor2024
         Barriere.c
         DeplacementIhm.h
         DeplacementIhm.c
+        ActionHistorique.c
+        ActionHistorique.h
 )
