@@ -115,7 +115,6 @@ void AfficherPlateau(Plateau *p) {
             else {
                 printf("---+");
             }
-
         }
         printf("\n");
     }
@@ -407,7 +406,18 @@ bool VerifierBarriereLimites(Plateau* plateau, Barriere barriere) {
 
 //=>True si le joueur à la portée
 bool PeutPlacerBarriere(Joueur* joueur, Barriere barriere) {
-
+    bool res = false;
+    if(barriere.type == 'h') {
+        if((barriere.position.y == joueur->position.y) && ( (barriere.position.x == joueur->position.x) || (barriere.position.x == joueur->position.x -1) ) ) {
+            res = true;
+        }
+    }
+    else {
+        if((barriere.position.x == joueur->position.x) && ( (barriere.position.y == joueur->position.y) || (barriere.position.y == joueur->position.y -1))) {
+            res = true;
+        }
+    }
+    return res;
 }
 
 
@@ -415,12 +425,20 @@ bool PeutPlacerBarriere(Joueur* joueur, Barriere barriere) {
 //=>true si la barriere peut être placée
 bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barriere) {
     bool res = false;
-    if(VerifierBarriereLimites(joueur, barriere)) {
+    if(VerifierBarriereLimites(plateau, barriere)) {
         //Barriere dans les limites
+        if(PeutPlacerBarriere(joueur, barriere)) {
+            res = true;
+            printf("\nBarriere pose avec succes");
+        }
+        else {
+            printf("\nCase hors de portee, rapprochez vous pour mettre une barriere");
+        }
     }
     else {
         printf("\nVous ne pouvez pas mettre une barriere ici, la barriere doit rester dans les limites de la map !");
     }
+    return res;
 }
 
 
@@ -444,9 +462,17 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
             sortir = true;
         }
         else {
-
+            if(VerifierPlacementBarriere(joueur, plateau, barriere)) {
+                SetBarriere(plateau, barriere, 'b');
+                res = true;
+                sortir = true;
+            }
+            else {
+                printf("\nPlacer une autre barrire !");
+            }
         }
     }
+    return res;
 }
 
 
