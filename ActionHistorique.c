@@ -9,7 +9,6 @@ struct ActionNode* createNode(Action action) {
     //Allocation dynamique de memoire
     struct ActionNode* newNode = (struct ActionNode*)malloc(sizeof(struct ActionNode));
     newNode->action = &action;
-    newNode->next = NULL;
     newNode->prev = NULL;
     return newNode;
 }
@@ -21,7 +20,6 @@ void pushAction(Action action, struct ActionNode* tail) {
         tail = newNode;
     }
     else {
-        tail->next = newNode;
         newNode->prev = tail;
         tail = newNode;
     }

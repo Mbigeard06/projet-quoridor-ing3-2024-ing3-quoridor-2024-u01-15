@@ -135,7 +135,7 @@ bool Tour(Partie* partie) {
                 }
             break;
             case 2:
-                if (PlacerBarriere(&partie->joueurs[partie->indiceJoueur], &partie->plateau)) {
+                if (PlacerBarriere(&partie->joueurs[partie->indiceJoueur], &partie->plateau, &tourAction)) {
                     //Déplacement réalisé
                     finTour = true;
                 }

@@ -49,7 +49,7 @@ typedef struct {
     TypeAction action;
     //Joueur ayant executé l'action
     Joueur* joueur;
-    //Position (si déplacement, c'est la position avant le déplacemen)
+    //Position (si déplacement, c'est la position avant le déplacement)
     Position position;
     //Type de postion (h ou v) seulement utile pour barriere
     char typePostion;

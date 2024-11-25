@@ -226,11 +226,18 @@ bool VerifierJoueur(Position position, Plateau* plateau, Direction deplacement) 
     return JoueurDevant;
 }
 
+void EnregistrerDeplacement(Joueur* joueur, Position oldPosition,Action* lastAction) {
+    //On enregistre l'action
+    lastAction->position = oldPosition;
+    lastAction->joueur = joueur;
+    lastAction->typePostion =' ';
+    lastAction->action = Deplacement;
+}
+
 //Attribuer une nouvelle position au joueur
 void SetPostionJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction, Position oldPosition, Position newPosition) {
-    //On enregistre la position du joueur
-    lastAction->position = oldPosition;
-
+    //Enregistrement de l'action
+    EnregistrerDeplacement(joueur, oldPosition, lastAction);
     //Changer la position du joueur
     plateau->plateau[oldPosition.x][oldPosition.y] = ' ';
 
@@ -447,7 +454,7 @@ bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barrie
 
 
 //=>true si la barriere à été placée
-bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
+bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction) {
     bool res = false;
     bool sortir = false;
     if(joueur->nbrBarriere < 1) {
@@ -456,12 +463,9 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
     }
     while (!sortir) {
         Barriere barriere;
-        Barriere* ptr_Barriere = &barriere;
-        //Recuperation de la barriere
-        if(BarriereIhm(joueur, ptr_Barriere)) {
+        if(BarriereIhm(joueur, &barriere)) {
             //Annulation de la pose de barriere
             printf("\n Retour au menu d'action");
-
             sortir = true;
         }
         else {
@@ -471,6 +475,8 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
 
                 //Une barriere en moins
                 joueur->nbrBarriere--;
+                //Enregistrement de l'action barriere
+
                 res = true;
                 sortir = true;
             }

@@ -11,7 +11,6 @@
 
 struct ActionNode{
     Action* action;
-    struct ActionNode* next;
     struct ActionNode* prev;
 
 };
