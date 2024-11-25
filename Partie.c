@@ -133,8 +133,11 @@ bool Tour(Partie* partie) {
                 }
             break;
             case 2:
-                // Code pour poser une barrière
-                    break;
+                if (PlacerBarriere(&partie->joueurs[partie->indiceJoueur], &partie->plateau)) {
+                    //Déplacement réalisé
+                    finTour = true;
+                }
+                break;
             case 3:
                 // Code pour passer le tour
                     break;

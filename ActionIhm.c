@@ -33,17 +33,17 @@ int ActionIhm(Joueur joueur) {
     return choix;
 }
 
-//Renvoi la barriere choisi par l'utilisateur
-Barriere BarriereIhm(Joueur* joueur) {
-    Barriere barriere;
+// Renvoi la barrière choisie par l'utilisateur
+void BarriereIhm(Joueur* joueur, Barriere* barriere) {
     int valide = 0;
     int choixType = 0;
 
     // Demander le type de la barrière
     while (!valide) {
         printf("\n| Nombre de barrières disponibles : %d", joueur->nbrBarriere);
-        printf("\n1/ Poser une vers ");
+        printf("\n1/ Poser une barrière horizontale");
         printf("\n2/ Poser une barrière verticale");
+        printf("\n3/ Effectuer une autre action");
         printf("\nVotre choix : ");
 
         if (scanf("%d", &choixType) != 1) {
@@ -51,10 +51,15 @@ Barriere BarriereIhm(Joueur* joueur) {
             while (getchar() != '\n');
             printf("Entree invalide. Veuillez saisir 1 ou 2.\n");
         } else if (choixType < 1 || choixType > 2) {
-            // Vérification que l'entrée est bien dans la plage
+            // Vérification que l'entrée est dans la plage
             printf("Choix invalide. Veuillez saisir 1 pour horizontal ou 2 pour vertical.\n");
-        } else {
-            //Recuperer direction de la barriere
+        }
+        else if (choixType == 3) {
+            // Annulation de la pose de la barrière
+            barriere = NULL;
+            return NULL; // Retourner NULL si l'utilisateur a choisi de ne pas poser la barrière
+        }
+        else {
             // Si l'entrée est valide, on sort de la boucle
             valide = 1;
         }
@@ -62,23 +67,48 @@ Barriere BarriereIhm(Joueur* joueur) {
 
     // Affecter le type de la barrière
     if (choixType == 1) {
-        barriere.type = 'h';  // Horizontale
+        barriere->type = 'h';  // Horizontale
     } else {
-        barriere.type = 'v';  // Verticale
+        barriere->type = 'v';  // Verticale
     }
 
-    // Demander la position de la barrière
+    // Demander la direction de la barrière en fonction de son type
+    valide = 0;
+    while (!valide) {
+        if (barriere->type == 'h') {
+            printf("\nChoisissez la direction de la barrière horizontale :\n");
+            printf("g : Gauche\n");
+            printf("d : Droite\n");
+            printf("Votre choix : ");
+            if (scanf(" %c", &barriere->direction) != 1 || (barriere->direction != 'g' && barriere->direction != 'd')) {
+                while (getchar() != '\n');  // Vider le tampon
+                printf("Entrée invalide. Veuillez saisir 'g' pour gauche ou 'd' pour droite.\n");
+            } else {
+                valide = 1;
+            }
+        } else if (barriere->type == 'v') {
+            printf("\nChoisissez la direction de la barrière verticale :\n");
+            printf("h : Haut\n");
+            printf("b : Bas\n");
+            printf("Votre choix : ");
+            if (scanf(" %c", &barriere->direction) != 1 || (barriere->direction != 'h' && barriere->direction != 'b')) {
+                while (getchar() != '\n');  // Vider le tampon
+                printf("Entrée invalide. Veuillez saisir 'h' pour haut ou 'b' pour bas.\n");
+            } else {
+                valide = 1;
+            }
+        }
+    }
+
+    // Récupérer position barrière
     valide = 0;
     while (!valide) {
         printf("\nVeuillez entrer la position de la barrière (x, y) : ");
-        if (scanf("%d %d", &barriere.position.x, &barriere.position.y) != 2) {
-            // Vider le tampon en cas d'entrée invalide
+        if (scanf("%d %d", &barriere->position.x, &barriere->position.y) != 2) {
             while (getchar() != '\n');
             printf("Entrée invalide. Veuillez saisir des coordonnées x et y valides.\n");
         } else {
             valide = 1;
         }
     }
-
-    return barriere;
 }

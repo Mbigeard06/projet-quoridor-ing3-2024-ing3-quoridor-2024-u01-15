@@ -48,29 +48,29 @@ void SetBarriere(Plateau *p, Barriere barriere, char visuel) {
     switch (barriere.direction) {
         case Haut:
             // Placer une barrière dans la direction "Haut"
-                for (int i = 0; i < 2; i++) {
-                    p->barriereHorizontal[barriere.position.x - i][barriere.position.y] = visuel;
+                for (int i = 0; i > -2; i--) {
+                    p->barriereVerticale[barriere.position.x + i][barriere.position.y] = visuel;
                 }
         break;
 
         case Bas:
             // Placer une barrière dans la direction "Bas"
                 for (int i = 0; i < 2; i++) {
-                    p->barriereHorizontal[barriere.position.x + i][barriere.position.y] = visuel;
+                    p->barriereVerticale[barriere.position.x + i][barriere.position.y] = visuel;
                 }
         break;
 
         case Gauche:
             // Placer une barrière dans la direction "Gauche"
-                for (int i = 0; i < 2; i++) {
-                    p->barriereVerticale[barriere.position.x][barriere.position.y - i] = visuel;
+                for (int i = 0; i > -2; i--) {
+                    p->barriereHorizontal[barriere.position.x][barriere.position.y + i] = visuel;
                 }
         break;
 
         case Droit:
             // Placer une barrière dans la direction "Droit"
                 for (int i = 0; i < 2; i++) {
-                    p->barriereVerticale[barriere.position.x][barriere.position.y + i] = visuel;
+                    p->barriereHorizontal[barriere.position.x][barriere.position.y + i] = visuel;
                 }
         break;
 
@@ -366,18 +366,86 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
     return res;
 }
 
+//Verifie qu'une barriere est dans les limites
+bool VerifierBarriereLimites(Plateau* plateau, Barriere barriere) {
+    bool res = false;
+    if(barriere.type == 'v') {
+        //Barriere verticale
+        if((0 <= barriere.position.x && 8 >= barriere.position.x) && (0 <= barriere.position.y && 7 >= barriere.position.y) ) {
+            //X[0,8] et Y[0,7]
+            if(barriere.direction == Haut) {
+                if(barriere.position.x - 1 >= 0) {
+                    res = true;
+                }
+            }
+            else {
+                if(barriere.position.x + 1 <= 8) {
+                    res = true;
+                }
+            }
+        }
+    }
+    if(barriere.type == 'h') {
+        //Barriere verticale
+        if((0 <= barriere.position.x && 7 >= barriere.position.x) && (0 <= barriere.position.y && 8 >= barriere.position.y) ) {
+            //X[0,8] et Y[0,7]
+            if(barriere.direction == Gauche) {
+                if(barriere.position.y - 1 >= 0) {
+                    res = true;
+                }
+            }
+            else {
+                if(barriere.position.y + 1 <= 8) {
+                    res = true;
+                }
+            }
+        }
+    }
+    return res;
+}
+
+
+//=>True si le joueur à la portée
+bool PeutPlacerBarriere(Joueur* joueur, Barriere barriere) {
+
+}
+
+
+
 //=>true si la barriere peut être placée
 bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barriere) {
-    return true;
+    bool res = false;
+    if(VerifierBarriereLimites(joueur, barriere)) {
+        //Barriere dans les limites
+    }
+    else {
+        printf("\nVous ne pouvez pas mettre une barriere ici, la barriere doit rester dans les limites de la map !");
+    }
 }
+
+
 
 //=>true si la barriere à été placée
 bool PlacerBarriere(Joueur* joueur, Plateau* plateau) {
     bool res = false;
     bool sortir = false;
+    if(joueur->nbrBarriere < 1) {
+        printf("\n Vous ne possèdez plus de barriere !");
+        sortir = true;
+    }
     while (!sortir) {
-        //Recuperation barriere
-        Barriere barriere = BarriereIhm(joueur);
+        Barriere barriere;
+        Barriere* ptr_Barriere = &barriere;
+        //Recuperation de la barriere
+        BarriereIhm(joueur, ptr_Barriere);
+        if(ptr_Barriere == NULL) {
+            //Annulation de la pose de barriere
+            printf("\n Retour au menu d'action");
+            sortir = true;
+        }
+        else {
+
+        }
     }
 }
 

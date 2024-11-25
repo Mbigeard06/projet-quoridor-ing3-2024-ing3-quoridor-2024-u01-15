@@ -28,7 +28,7 @@ Partie* InitialiserPartie();
 //Calculer ordre de passage
 void CalculerPassage(Joueur* joueur[]);
 //Placer une barrière
-void PlacerBarriere(Joueur* joueur, Position position);
+bool PlacerBarriere(Joueur* joueur, Plateau* plateau);
 //Passer au tour suivant
 void TourSuivant(Partie* partie);
 //Annuler l'action précédente
