@@ -14,6 +14,6 @@ int ActionIhm(Joueur joueur);
 //Afficher que l'action est impossible
 void ActionImpossible(TypeAction actionType);
 //Renvoi la barriere choisi par l'utilisateur
-void BarriereIhm(Joueur* joueur, Barriere* barriere);
+bool BarriereIhm(Joueur* joueur, Barriere* barriere);
 
 #endif //ACTIONIHM_H

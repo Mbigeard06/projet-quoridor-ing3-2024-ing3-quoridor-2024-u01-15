@@ -12,12 +12,12 @@
 //Determine si la partie est gagnée par le joueur Fausse pour le moment
 bool AGagne(Joueur joueur, int indiceJoueur) {
     bool gagne = false;
-    if (indiceJoueur == 1) {
+    if (indiceJoueur == 0) {
         if(joueur.position.x == TAILLE_PLATEAU - 1) {
             gagne = true;
         }
     }
-    else if (indiceJoueur == 2) {
+    else if (indiceJoueur == 1) {
         if(joueur.position.x == 0) {
             gagne = true;
         }
@@ -32,7 +32,7 @@ bool AGagne(Joueur joueur, int indiceJoueur) {
             gagne = true;
         }
     }
-    return false;
+    return gagne;
 }
 
 //Définie les informations sur les différents joueur
