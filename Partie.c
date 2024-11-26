@@ -127,9 +127,10 @@ bool Tour(Partie* partie) {
                 if(DeplacerJoueur(&partie->joueurs[partie->indiceJoueur], &partie->plateau, &tourAction)) {
                     //Déplacement réalisé
                     finTour = true;
-                    //Fin de la partie
+                    //Enregistrement de l'action
                     pushAction(tourAction, partie->dernierAction);
                     if(AGagne(partie->joueurs[partie->indiceJoueur],partie->indiceJoueur)) {
+                        //Fin de la partie
                         tourSuivant = false;
                     }
                 }

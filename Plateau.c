@@ -234,6 +234,16 @@ void EnregistrerDeplacement(Joueur* joueur, Position oldPosition,Action* lastAct
     lastAction->action = Deplacement;
 }
 
+//Enregistre la barriere dans la dernier action
+void EnregistrerBarriere(Barriere barriere,Joueur* joueur, Action* lastAction) {
+    //On enregistre l'action
+    lastAction->position = barriere.position;
+    lastAction->joueur = joueur;
+    lastAction->typePostion = barriere.type;
+    lastAction->action = Deplacement;
+    lastAction->direction = barriere.direction;
+}
+
 //Attribuer une nouvelle position au joueur
 void SetPostionJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction, Position oldPosition, Position newPosition) {
     //Enregistrement de l'action
@@ -476,7 +486,7 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction) {
                 //Une barriere en moins
                 joueur->nbrBarriere--;
                 //Enregistrement de l'action barriere
-
+                EnregistrerBarriere(barriere, joueur, lastAction);
                 res = true;
                 sortir = true;
             }
