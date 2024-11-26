@@ -139,7 +139,6 @@ void AnnulerBarriere(Action lastAction, Joueur* joueur, Action* actionTour, Plat
     EnregistrerBarriere(barriere, joueur, actionTour);
     //Enregistrer l'action
     actionTour->action = Annulation;
-
 }
 
 //Annuler la derniere action
@@ -162,7 +161,7 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
                     res = true;
                 break;
                 case Annulation :
-                    res = true;
+                    printf("Impossible d annuler une annulation");
                     break;
                 case Initialisation :
                     printf("Personne n a joue avant vous !");
@@ -200,9 +199,7 @@ bool Tour(Partie* partie) {
                     finTour = true;
                     //Enregistrer l'action
                     //Position dans tour action valide !
-                    printf("\n Position dans l'action à enregister : x: %d , y: %d",tourAction.position.x, tourAction.position.y);
                     pushAction(tourAction, &partie->dernierAction);
-                    printf("\n Position dans l'action enregistré : x: %d , y: %d",getLastAction(partie->dernierAction).position.x, getLastAction(partie->dernierAction).position.y);
                     if(AGagne(partie->joueurs[partie->indiceJoueur],partie->indiceJoueur)) {
                         //Fin de la partie
                         tourSuivant = false;

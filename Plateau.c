@@ -48,8 +48,8 @@ void SetBarriere(Plateau *p, Barriere barriere, char visuel) {
     switch (barriere.direction) {
         case Haut:
             // Placer une barrière dans la direction "Haut"
-                for (int i = 0; i > -2; i--) {
-                    p->barriereVerticale[barriere.position.x + i][barriere.position.y] = visuel;
+                for (int i = 0; i < 2; i++) {
+                    p->barriereVerticale[barriere.position.x - i][barriere.position.y] = visuel;
                 }
         break;
 
@@ -393,6 +393,7 @@ bool VerifierBarriereLimites(Plateau* plateau, Barriere barriere) {
         if((0 <= barriere.position.x && 8 >= barriere.position.x) && (0 <= barriere.position.y && 7 >= barriere.position.y) ) {
             //X[0,8] et Y[0,7]
             if(barriere.direction == Haut) {
+                printf("\nBarriere vertical");
                 if(barriere.position.x - 1 >= 0) {
                     res = true;
                 }
@@ -405,7 +406,7 @@ bool VerifierBarriereLimites(Plateau* plateau, Barriere barriere) {
         }
     }
     if(barriere.type == 'h') {
-        //Barriere verticale
+        //Barriere horizontal
         if((0 <= barriere.position.x && 7 >= barriere.position.x) && (0 <= barriere.position.y && 8 >= barriere.position.y) ) {
             //X[0,8] et Y[0,7]
             if(barriere.direction == Gauche) {
@@ -479,6 +480,22 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction) {
             sortir = true;
         }
         else {
+            //DEBUG
+            printf("\nBarriere type %c", barriere.type);
+            if(barriere.direction == Haut) {
+                printf("\nBarriere vers le haut %c", barriere.type);
+            }
+            if(barriere.direction == Gauche) {
+                printf("\nBarriere vers la gauche %c", barriere.type);
+            }
+            if(barriere.direction == Droit) {
+                printf("\nBarriere vers la droite %c", barriere.type);
+            }
+            if(barriere.direction == Bas) {
+                printf("\nBarriere vers le bas %c", barriere.type);
+            }
+            printf("Barriere position : (%d,%d)",barriere.position.x, barriere.position.y);
+            ////////////////////////////////////////////////////////
             if(VerifierPlacementBarriere(joueur, plateau, barriere)) {
                 printf("\n Barriere mise avec succes !");
                 SetBarriere(plateau, barriere, 'b');
