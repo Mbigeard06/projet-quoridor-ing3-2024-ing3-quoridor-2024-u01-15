@@ -164,6 +164,9 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
                 case Annulation :
                     res = true;
                     break;
+                case Initialisation :
+                    printf("Personne n a joue avant vous !");
+                    break;
                 default:
                     printf("\nLe joueur d'avant à passer son tour, il n y a aucune action a annuler !");
                 break;
@@ -224,14 +227,6 @@ bool Tour(Partie* partie) {
                     indiceJoueurConcerne = partie->nbJoueur - 1;
                 }
                 if(AnnulerDerniereAction(&partie->joueurs[indiceJoueurConcerne], &partie->plateau, partie->dernierAction, &tourAction)) {
-                    //Ajouter l'action
-                    if(tourAction.action == Annulation) {
-                        printf("\nAction renregistre comme Annulation");
-                    }
-                    else {
-                        printf("\nAction non enregistre comme annulation");
-                    }
-                    printf("\n tour action x : %d , y: %d", tourAction.position.x, tourAction.position.y);
                     pushAction(tourAction, &partie->dernierAction);
                     finTour = true;
                     printf("\nTour suivant");
@@ -267,14 +262,18 @@ void TourSuivant(Partie* partie){
 //Initialise la partie
 Partie* InitialiserPartie() {
     Partie partie;
-    struct ActionNode lastAction;
-    //Pas de joueur
+    //Premier tour, personne n'a joué avant
     partie.indiceJoueur = -1;
+    //Initialisation joueur
     InitialiserJoueurs(&partie);
+    //Initialisation plateau
     InitialiserPlateau(&partie.plateau,partie.joueurs, partie.nbJoueur);
+    //Afficher Plateau
     AfficherPlateau(&partie.plateau);
     //Pas d'action avant
-    partie.dernierAction = &lastAction;
+    Action action;
+    action.action = Inaction;
+    pushAction(action, &partie.dernierAction);
     //Lancement du premier tour
     TourSuivant(&partie);
     return NULL;

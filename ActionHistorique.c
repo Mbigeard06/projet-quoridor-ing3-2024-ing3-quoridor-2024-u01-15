@@ -13,6 +13,7 @@ struct ActionNode* createNode(Action action) {
     return newNode;
 }
 
+//Ajouter une nouvelle action
 void pushAction(Action action, struct ActionNode** tail) {
     struct ActionNode* newNode = createNode(action);
     if (*tail == NULL) {
@@ -26,3 +27,8 @@ void pushAction(Action action, struct ActionNode** tail) {
 Action getLastAction(struct ActionNode* tail) {
     return tail->action;
 }
+
+Action GetSecondLastAction(struct ActionNode* tail) {
+    return tail->prev->action;
+}
+

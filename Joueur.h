@@ -32,7 +32,8 @@ typedef enum {
     Deplacement,
     Annulation,
     PoserBarriere,
-    Inaction
+    Inaction,
+    Initialisation
 } TypeAction;
 
 typedef enum {
