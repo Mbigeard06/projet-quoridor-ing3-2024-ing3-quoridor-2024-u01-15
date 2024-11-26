@@ -14,7 +14,7 @@ int ActionIhm(Joueur joueur) {
         printf("\n2/ Poser une barriere");
         printf("\n3/ Passer son tour");
         printf("\n4/ Annuler la derniere action");
-        printf("\n4/ Sauvegarder et quitter la partie");
+        printf("\n5/ Sauvegarder et quitter la partie");
         printf("\nVotre choix : ");
 
         // Vérification de la validité de l'entrée

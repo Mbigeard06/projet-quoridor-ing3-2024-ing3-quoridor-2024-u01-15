@@ -28,5 +28,13 @@ void PlacerPion(Plateau *p, Position pos, Joueur* joueur);
 void AfficherPlateau(Plateau *p);
 //Renvoi true si le déplacement à abouti et false sinon
 bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction);
+//Modifie la position du joueur
+void SetPostionJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction, Position oldPosition, Position newPosition);
+//Placer une barriere
+bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction);
+//Enregistre le placement de la barriere
+void EnregistrerBarriere(Barriere barriere,Joueur* joueur, Action* lastAction);
+//Modifier les barrierres
+void SetBarriere(Plateau *p, Barriere barriere, char visuel);
 #endif //PLATEAU_H
 

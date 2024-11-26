@@ -92,9 +92,10 @@ void OrdreDePassageIhm(Partie* partie) {
 }
 
 //Attribuer les barrières
-void AttribuerBarrieres(Joueur* joueurs, int nbJoueur) {
+void AttribuerBarrieresEtAnnulation(Joueur* joueurs, int nbJoueur) {
     for (int i = 0; i < nbJoueur; i++) {
-        AttribuerBarriere(&joueurs[i], 20 / nbJoueur);
+        joueurs[i].nbrBarriere = 20 / nbJoueur;
+        joueurs[i].annuler = true;
     }
 }
 
@@ -107,17 +108,84 @@ void InitialiserJoueurs(Partie* partie) {
     //Afficher l'ordre de passage
     OrdreDePassageIhm(partie);
     //Donnes les barrieres aux joueurs
-    AttribuerBarrieres(partie->joueurs, partie->nbJoueur);
+    AttribuerBarrieresEtAnnulation(partie->joueurs, partie->nbJoueur);
     printf("%d",partie->joueurs[0].nbrBarriere);
+}
+
+//Annule le déplacement d'un joueur
+void AnnulerDeplacement(Action lastAction, Joueur* joueur, Action* actionTour, Plateau* plateau) {
+    //Recuperation ancienne position
+    Position anciennePosition =  lastAction.position;
+    //Enregistrement de la position actuelle
+    actionTour->position = joueur->position;
+    //Modifier la postion du joueur
+    SetPostionJoueur(joueur, plateau, actionTour, joueur->position, anciennePosition);
+    //Enregistrer l'action
+    actionTour->action = Annulation;
+}
+
+//Annuler la dernire posde de barriere
+void AnnulerBarriere(Action lastAction, Joueur* joueur, Action* actionTour, Plateau* plateau) {
+    //Recuperer la barriere
+    joueur->nbrBarriere++;
+    //Definition de la barriere
+    Barriere barriere;
+    barriere.position = lastAction.position;
+    barriere.direction = lastAction.direction;
+    barriere.type = lastAction.typePostion;
+    //Annulation barriere
+    SetBarriere(plateau, barriere, ' ');
+    //Enregistrer l'action
+    EnregistrerBarriere(barriere, joueur, actionTour);
+    //Enregistrer l'action
+    actionTour->action = Annulation;
+
+}
+
+//Annuler la derniere action
+bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode*  dernierElement, Action* actionTour) {
+    bool res = false;
+    if(joueur->annuler) {
+        //Le joueur peut annuler une action
+        Action lastAction = getLastAction(dernierElement);
+        printf("\n last action x : %d , y: %d", lastAction.position.x, lastAction.position.y);
+        if(dernierElement != NULL) {
+            //Existe une dernire action
+            switch (lastAction.action) {
+                case Deplacement :
+                    printf("case Deplacement");
+                    AnnulerDeplacement(lastAction, joueur, actionTour, plateau);
+                    res = true;
+                break;
+                case PoserBarriere:
+                    AnnulerBarriere(lastAction, joueur, actionTour, plateau);
+                    res = true;
+                break;
+                case Annulation :
+                    res = true;
+                    break;
+                default:
+                    printf("\nLe joueur d'avant à passer son tour, il n y a aucune action a annuler !");
+                break;
+            }
+        }
+        else {
+            printf("\nAucune action à annuler !");
+        }
+    }
+    else {
+        printf("\n Le joueur ne peut plus annuler d'action !");
+    }
+    return res;
 }
 
 //Lance le tour d'un joueur =>Renvoi true si tour suivant
 bool Tour(Partie* partie) {
     bool tourSuivant = true;
     bool finTour = false;
-    //Récupération de l'action
-    Action tourAction;
     while(!finTour) {
+        //Récupération de l'action
+        Action tourAction;
         //Recuperation de l'action
         int action = ActionIhm(partie->joueurs[partie->indiceJoueur]);
 
@@ -127,8 +195,11 @@ bool Tour(Partie* partie) {
                 if(DeplacerJoueur(&partie->joueurs[partie->indiceJoueur], &partie->plateau, &tourAction)) {
                     //Déplacement réalisé
                     finTour = true;
-                    //Enregistrement de l'action
-                    pushAction(tourAction, partie->dernierAction);
+                    //Enregistrer l'action
+                    //Position dans tour action valide !
+                    printf("\n Position dans l'action à enregister : x: %d , y: %d",tourAction.position.x, tourAction.position.y);
+                    pushAction(tourAction, &partie->dernierAction);
+                    printf("\n Position dans l'action enregistré : x: %d , y: %d",getLastAction(partie->dernierAction).position.x, getLastAction(partie->dernierAction).position.y);
                     if(AGagne(partie->joueurs[partie->indiceJoueur],partie->indiceJoueur)) {
                         //Fin de la partie
                         tourSuivant = false;
@@ -139,14 +210,33 @@ bool Tour(Partie* partie) {
                 if (PlacerBarriere(&partie->joueurs[partie->indiceJoueur], &partie->plateau, &tourAction)) {
                     //Déplacement réalisé
                     finTour = true;
+                    //Enregistrement action
+                    pushAction(tourAction, &partie->dernierAction);
                 }
                 break;
             case 3:
-                // Code pour passer le tour
                     break;
             case 4:
-                // Code pour annuler la dernière action
-                    break;
+                //Indice du joueur precedent
+                int indiceJoueurConcerne = partie->indiceJoueur - 1;
+                if(partie->indiceJoueur < 0) {
+                    //Annulation demandé par le joueur d'indice 0.
+                    indiceJoueurConcerne = partie->nbJoueur - 1;
+                }
+                if(AnnulerDerniereAction(&partie->joueurs[indiceJoueurConcerne], &partie->plateau, partie->dernierAction, &tourAction)) {
+                    //Ajouter l'action
+                    if(tourAction.action == Annulation) {
+                        printf("\nAction renregistre comme Annulation");
+                    }
+                    else {
+                        printf("\nAction non enregistre comme annulation");
+                    }
+                    printf("\n tour action x : %d , y: %d", tourAction.position.x, tourAction.position.y);
+                    pushAction(tourAction, &partie->dernierAction);
+                    finTour = true;
+                    printf("\nTour suivant");
+                }
+                break;
             case 5:
                 // Code pour sauvegarder et quitter la partie
                     break;
@@ -184,7 +274,7 @@ Partie* InitialiserPartie() {
     InitialiserPlateau(&partie.plateau,partie.joueurs, partie.nbJoueur);
     AfficherPlateau(&partie.plateau);
     //Pas d'action avant
-    partie.dernierAction = NULL;
+    partie.dernierAction = &lastAction;
     //Lancement du premier tour
     TourSuivant(&partie);
     return NULL;
@@ -192,7 +282,5 @@ Partie* InitialiserPartie() {
 
 //Calculer ordre de passage
 void CalculerPassage(Joueur* joueur[]){};
-//Annuler l'action précédente
-void AnnulerAction(Joueur* joueur[], int indiceJoueur, int nbJoueur, Action dernierAction){};
 //Sauvegarder Partie
 int SauvegarderPartie(Partie partie) {};

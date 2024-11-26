@@ -10,7 +10,7 @@
 #include "Joueur.h"
 
 struct ActionNode{
-    Action* action;
+    Action action;
     struct ActionNode* prev;
 
 };
@@ -19,9 +19,9 @@ struct ActionNode{
 struct ActionNode* createNode(Action action);
 
 //Ajouter une nouvelle action
-void pushAction(Action action, struct ActionNode* tail);
+void pushAction(Action action, struct ActionNode** tail);
 
-Action* getLastAction();
+Action getLastAction(struct ActionNode* tail);
 
 
 

@@ -240,7 +240,7 @@ void EnregistrerBarriere(Barriere barriere,Joueur* joueur, Action* lastAction) {
     lastAction->position = barriere.position;
     lastAction->joueur = joueur;
     lastAction->typePostion = barriere.type;
-    lastAction->action = Deplacement;
+    lastAction->action = PoserBarriere;
     lastAction->direction = barriere.direction;
 }
 
