@@ -197,11 +197,11 @@ bool ChargerPartie(Partie* partie) {
             fclose(fichier);
             return false;
         }
-        printf("[DEBUG] Joueur %d : Barrières : %d\n", i + 1, joueur->nbrBarriere);
+        printf("[DEBUG] Joueur %d : Barrieres : %d\n", i + 1, joueur->nbrBarriere);
 
         // Lecture de la capacité d'annulation
         if (!fgets(ligne, sizeof(ligne), fichier)) {
-            printf("[ERREUR] Echec de lecture de la capacité d'annulation pour le joueur %d.\n", i + 1);
+            printf("[ERREUR] Echec de lecture de la capacite d'annulation pour le joueur %d.\n", i + 1);
             fclose(fichier);
             return false;
         }

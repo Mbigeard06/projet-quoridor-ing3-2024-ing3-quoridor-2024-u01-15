@@ -84,11 +84,11 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
                 printf("g : Gauche\n");
                 printf("d : Droite\n");
                 printf("Votre choix : ");
-                if (scanf(" %c", &direction) != 1 || (direction != 'g' && direction != 'd')) {
+                if (scanf(" %c", &direction) != 1 || (direction != 'g' && direction != 'G' && direction != 'd' && direction != 'D')) {
                     while (getchar() != '\n');  // Vider le tampon
                     printf("Entrée invalide. Veuillez saisir 'g' pour gauche ou 'd' pour droite.\n");
                 } else {
-                    if(direction == 'g') {
+                    if(direction == 'g' || direction == 'G') {
                         printf("\nGAUCHEEEEEE");
                         barriere->direction = Gauche;
                     }
@@ -103,11 +103,11 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
                 printf("h : Haut\n");
                 printf("b : Bas\n");
                 printf("Votre choix : ");
-                if (scanf(" %c", &direction) != 1 || (direction != 'h' && direction != 'b')) {
+                if (scanf(" %c", &direction) != 1 || (direction != 'h' && direction != 'b' && direction != 'H' && direction != 'B')) {
                     while (getchar() != '\n');  // Vider le tampon
                     printf("Entree invalide. Veuillez saisir 'h' pour haut ou 'b' pour bas.\n");
                 } else {
-                    if (direction == 'h') {
+                    if (direction == 'h' || direction == 'H' ) {
                         printf("\nDirection : HAUT");
                         barriere->direction = Haut;
                     } else {

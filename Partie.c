@@ -34,7 +34,7 @@ bool AGagne(Joueur joueur, int indiceJoueur) {
 
 //Définie les informations sur les différents joueur
 void ObtenirJoueur(Partie* partie) {
-    printf("Combien de joueurs participent (2 ou 4) ?\n");
+    printf("\nCombien de joueurs participent (2 ou 4) ?");
     partie->nbJoueur = 0;
 
     // Récupérer le nombre de joueurs, tant que ce n'est pas 2 ou 4
@@ -60,7 +60,7 @@ void ObtenirJoueur(Partie* partie) {
         //Récupération du score du joueur
         partie->joueurs[i].score = ScoreJoueur(partie->joueurs[i].nom);
         //Choix du pion
-        printf("\nQuel symbol veuillez vous prendre pour votre pion ?");
+        printf("\nQuel symbole voulez vous prendre pour votre pion ?");
         scanf("%c", &pion);
         AttribuerPion(&partie->joueurs[i], pion);
         //Vider tampon
@@ -84,7 +84,7 @@ void OrdreDePassage(Partie* partie) {
 void OrdreDePassageIhm(Partie* partie) {
     printf("Ordre de passage des joueurs (aleatoire) :\n");
     for (int i = 0; i < partie->nbJoueur; i++) {
-        printf("Joueur %d : %s. Symbol : %c Score : %d\n", i + 1, partie->joueurs[i].nom, partie->joueurs[i].pion, partie->joueurs[i].score);
+        printf("Joueur %d : %s. Symbole : %c Score : %d\n", i + 1, partie->joueurs[i].nom, partie->joueurs[i].pion, partie->joueurs[i].score);
     }
 }
 
@@ -121,7 +121,7 @@ void AnnulerDeplacement(Action lastAction, Joueur* joueur, Action* actionTour, P
     actionTour->action = Annulation;
 }
 
-//Annuler la dernire posde de barriere
+//Annuler la dernire pose de barriere
 void AnnulerBarriere(Action lastAction, Joueur* joueur, Action* actionTour, Plateau* plateau) {
     //Recuperer la barriere
     joueur->nbrBarriere++;
@@ -149,7 +149,7 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
             //Existe une dernire action
             switch (lastAction.action) {
                 case Deplacement :
-                    printf("case Deplacement");
+                    printf("Case deplacement");
                     AnnulerDeplacement(lastAction, joueur, actionTour, plateau);
                     res = true;
                 break;
@@ -158,13 +158,13 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
                     res = true;
                 break;
                 case Annulation :
-                    printf("Impossible d annuler une annulation");
+                    printf("Impossible d'annuler une annulation");
                     break;
                 case Initialisation :
-                    printf("Personne n a joue avant vous !");
+                    printf("Personne n'a joue avant vous !");
                     break;
                 default:
-                    printf("\nLe joueur d'avant à passer son tour, il n y a aucune action a annuler !");
+                    printf("\nLe joueur d'avant a passer son tour, il n'y a aucune action a annuler !");
                 break;
             }
         }
@@ -253,7 +253,7 @@ void TourSuivant(Partie* partie){
         partie->indiceJoueur = 0;
     }
     AfficherPlateau(&partie->plateau);
-    printf("Indice joueur : %d", partie->indiceJoueur);
+    printf("\nIndice joueur : %d", partie->indiceJoueur);
     if(Tour(partie)) {
         TourSuivant(partie);
     }
