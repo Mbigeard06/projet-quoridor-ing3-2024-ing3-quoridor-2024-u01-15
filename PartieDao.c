@@ -4,10 +4,6 @@
 
 #include "PartieDao.h"
 
-#include <stdio.h>
-
-#include "Menu.h"
-
 //Sauvegarder une partie :
 void SauvegarderPartie(const Partie* partie) {
     FILE* fichier = fopen(FICHIER_SAUVEGARDE, "w"); // Ouvrir en mode écriture
@@ -192,7 +188,7 @@ bool ChargerPartie(Partie* partie) {
 
         // Lecture du nombre de barrières
         if (!fgets(ligne, sizeof(ligne), fichier)) {
-            printf("[ERREUR] Échec de lecture du nombre de barrières pour le joueur %d.\n", i + 1);
+            printf("[ERREUR] Echec de lecture du nombre de barrières pour le joueur %d.\n", i + 1);
             fclose(fichier);
             return false;
         }
@@ -216,6 +212,12 @@ bool ChargerPartie(Partie* partie) {
     }
     }
     fclose(fichier);
+
+    //Pas d'action avant
+    Action action;
+    action.action = Inaction;
+    pushAction(action, &partie->dernierAction);
+
     printf("[DEBUG] Fin de la fonction ChargerPartie.\n");
     return res;
 }

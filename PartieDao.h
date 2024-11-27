@@ -5,6 +5,10 @@
 #ifndef PARTIEDAO_H
 #define PARTIEDAO_H
 #include "Partie.h"
+#include <stdio.h>
+#include "Menu.h"
+#include "ActionHistorique.h";
+
 #define FICHIER_SAUVEGARDE "Sauvegarde.txt" // Taille maximale du nom de la partie
 
 //Charge une partie
