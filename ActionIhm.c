@@ -121,10 +121,10 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
         // Récupérer position barrière
         valide = 0;
         while (!valide) {
-            printf("\nVeuillez entrer la position de la barrière (x, y) : ");
+            printf("\nVeuillez entrer la position de la barriere (x, y) : ");
             if (scanf("%d %d", &barriere->position.x, &barriere->position.y) != 2) {
                 while (getchar() != '\n');
-                printf("Entree invalide. Veuillez saisir des coordonnées x et y valides.\n");
+                printf("Entree invalide. Veuillez saisir des coordonnees x et y valides.\n");
             } else {
                 valide = 1;
             }
