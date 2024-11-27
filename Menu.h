@@ -11,8 +11,6 @@
 void Menu();
 //Lancer une nouvelle partie
 void NouvellePartie();
-//Charger une ancienne partie
-void ChargerPartie();
 //Afficher les scores des joueurs
 void ScoreJoueurs();
 //Afficher l'aide

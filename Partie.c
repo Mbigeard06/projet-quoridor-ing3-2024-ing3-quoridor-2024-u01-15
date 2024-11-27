@@ -3,10 +3,8 @@
 //
 
 #include "Partie.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
+#include "PartieDao.h"
 
 
 //Determine si la partie est gagnée par le joueur Fausse pour le moment
@@ -230,8 +228,13 @@ bool Tour(Partie* partie) {
                 }
                 break;
             case 5:
-                // Code pour sauvegarder et quitter la partie
-                    break;
+                //Sauvegarde la partie
+                SauvegarderPartie(partie);
+                //Fin du tour
+                finTour = true;
+                //Pas de tour suivant
+                tourSuivant = false;
+                break;
             default:
                 // Ce cas ne devrait jamais arriver grâce à la validation de l'entrée
                     printf("Choix invalide.\n");
@@ -250,17 +253,39 @@ void TourSuivant(Partie* partie){
     else {
         partie->indiceJoueur = 0;
     }
+    AfficherPlateau(&partie->plateau);
     printf("Indice joueur : %d", partie->indiceJoueur);
     if(Tour(partie)) {
         TourSuivant(partie);
     }
 };
 
+//Recupere le nom de la partie
+void DemanderNomPartie(char* nomPartie) {
+    bool end = false;
+    while (!end) {
+        printf("\nVeuillez entrer le nom de la partie : ");
+        if (scanf("%s", nomPartie) != 1) {
+            // Si la saisie échoue
+            while (getchar() != '\n');  // Vider le tampon pour éliminer la saisie invalide
+        }
+        else {
+            //La saisie réussit
+            end = true;
+        }
+    }
+}
+
+
+
 //Initialise la partie
 Partie* InitialiserPartie() {
     Partie partie;
     //Premier tour, personne n'a joué avant
     partie.indiceJoueur = -1;
+    //Initialiser le nom de la partie
+    DemanderNomPartie(partie.nomPartie);
+    printf("Nom de la partie : %s", partie.nomPartie);
     //Initialisation joueur
     InitialiserJoueurs(&partie);
     //Initialisation plateau
@@ -275,8 +300,3 @@ Partie* InitialiserPartie() {
     TourSuivant(&partie);
     return NULL;
 }
-
-//Calculer ordre de passage
-void CalculerPassage(Joueur* joueur[]){};
-//Sauvegarder Partie
-int SauvegarderPartie(Partie partie) {};

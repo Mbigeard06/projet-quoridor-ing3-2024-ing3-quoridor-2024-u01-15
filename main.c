@@ -4,6 +4,7 @@
 #include "Menu.h"
 
 int main() {
+    printf("AAAAAAAAAAA");
     Menu();
     return 0;
 }

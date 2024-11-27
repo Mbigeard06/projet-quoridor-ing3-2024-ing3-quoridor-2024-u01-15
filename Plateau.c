@@ -232,6 +232,8 @@ void EnregistrerDeplacement(Joueur* joueur, Position oldPosition,Action* lastAct
     lastAction->joueur = joueur;
     lastAction->typePostion =' ';
     lastAction->action = Deplacement;
+    //Arbitraire car on n'a pas besoin de la direction pour un deplacement
+    lastAction->direction = Sortie;
 }
 
 //Enregistre la barriere dans la dernier action
@@ -480,22 +482,6 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction) {
             sortir = true;
         }
         else {
-            //DEBUG
-            printf("\nBarriere type %c", barriere.type);
-            if(barriere.direction == Haut) {
-                printf("\nBarriere vers le haut %c", barriere.type);
-            }
-            if(barriere.direction == Gauche) {
-                printf("\nBarriere vers la gauche %c", barriere.type);
-            }
-            if(barriere.direction == Droit) {
-                printf("\nBarriere vers la droite %c", barriere.type);
-            }
-            if(barriere.direction == Bas) {
-                printf("\nBarriere vers le bas %c", barriere.type);
-            }
-            printf("Barriere position : (%d,%d)",barriere.position.x, barriere.position.y);
-            ////////////////////////////////////////////////////////
             if(VerifierPlacementBarriere(joueur, plateau, barriere)) {
                 printf("\n Barriere mise avec succes !");
                 SetBarriere(plateau, barriere, 'b');

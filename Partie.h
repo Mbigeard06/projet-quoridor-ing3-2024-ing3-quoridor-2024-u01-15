@@ -7,9 +7,15 @@
 #include "ActionHistorique.h"
 #include "Joueur.h"
 #include "Plateau.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#define MAX_NOM_PARTIE 100  // Taille maximale du nom de la partie
 
 
 typedef struct {
+    char nomPartie[30];
     //Joueur en cours de tour
     int indiceJoueur;
     //Nombre de Joueur
@@ -34,6 +40,6 @@ bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction);
 void TourSuivant(Partie* partie);
 //Annuler l'action précédente
 void AnnulerAction(Joueur* joueur[], int indiceJoueur, int nbJoueur, Action dernierAction);
-//Sauvegarder Partie
-int SauvegarderPartie(Partie partie);
+//Tour suivant
+void TourSuivant(Partie* partie);
 #endif //PARTIE_H

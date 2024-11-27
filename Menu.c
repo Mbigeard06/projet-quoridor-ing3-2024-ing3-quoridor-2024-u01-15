@@ -4,6 +4,8 @@
 #include "Menu.h"
 #include <stdio.h>
 
+#include "PartieDao.h"
+
 //Vide le tampon
 void ViderTampon() {
     while (getchar() != '\n');  // Lire et ignorer tous les caractères jusqu'au saut de ligne
@@ -53,6 +55,7 @@ int MenuIhm() {
     return choix;
 }
 
+
 // Lancer le menu
 void Menu() {
     int choix = MenuIhm();
@@ -67,7 +70,17 @@ void Menu() {
             NouvellePartie();
         break;
         case 2:
-            ChargerPartie();
+            printf("ICI");
+            Partie partie;
+            //ChargerPartie
+            ChargerPartie(&partie);
+            //Mettre à jour l'indice joueur (auto incrementé dans lancer tour)
+            partie.indiceJoueur--;
+            if (partie.indiceJoueur < 0) {
+                partie.indiceJoueur = 0;
+            }
+            //Lancer tour
+            TourSuivant(&partie);
         break;
         case 3:
             ScoreJoueurs();
@@ -90,15 +103,14 @@ void NouvellePartie() {
     Partie* partie = InitialiserPartie();
 }
 
-// Charger une ancienne partie
-void ChargerPartie() {
-    // Implémentation à faire
-}
-
 // Afficher les scores des joueurs
 void ScoreJoueurs() {
     // Implémentation à faire
 }
 
 void Aide() {}
-void Quitter(){}
+//Libere la memoire allouee
+void Quitter(Partie* partie) {
+    printf("Au revoir :) !");
+    free(partie->joueurs);
+}
