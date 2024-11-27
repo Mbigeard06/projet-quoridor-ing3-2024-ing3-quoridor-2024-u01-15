@@ -20,7 +20,7 @@ bool AGagne(Joueur joueur, int indiceJoueur) {
             gagne = true;
         }
     }
-    else if (indiceJoueur == 3) {
+    else if (indiceJoueur == 2) {
         if(joueur.position.y == TAILLE_PLATEAU - 1) {
             gagne = true;
         }
@@ -179,7 +179,8 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
     return res;
 }
 
-//Fonction déclenche quand un joueur gagne
+//Fonction déclenche quand un joueur gagne2
+
 void FinPartie(Partie partie) {
     printf("\nFelicitation a %s !", partie.joueurs[partie.indiceJoueur].nom);
     printf("\nA bientot pour une prochaine partie !");
