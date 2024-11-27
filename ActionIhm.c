@@ -43,7 +43,7 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
     while (!valide) {
         printf("\n| Nombre de barrieres disponibles : %d", joueur->nbrBarriere);
         printf("\n1/ Poser une barriere horizontale");
-        printf("\n2/ Poser une barrière verticale");
+        printf("\n2/ Poser une barriere verticale");
         printf("\n3/ Effectuer une autre action");
         printf("\nVotre choix : ");
 
@@ -80,7 +80,7 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
         char direction;
         while (!valide) {
             if (barriere->type == 'h') {
-                printf("\nChoisissez la direction de la barrière horizontale :\n");
+                printf("\nChoisissez la direction de la barriere horizontale :\n");
                 printf("g : Gauche\n");
                 printf("d : Droite\n");
                 printf("Votre choix : ");
@@ -99,7 +99,7 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
                     valide = 1;
                 }
             } else if (barriere->type == 'v') {
-                printf("\nChoisissez la direction de la barrière verticale :\n");
+                printf("\nChoisissez la direction de la barriere verticale :\n");
                 printf("h : Haut\n");
                 printf("b : Bas\n");
                 printf("Votre choix : ");

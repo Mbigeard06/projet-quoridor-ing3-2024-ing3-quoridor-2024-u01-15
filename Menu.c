@@ -55,7 +55,6 @@ int MenuIhm() {
     return choix;
 }
 
-
 // Lancer le menu
 void Menu() {
     int choix = MenuIhm();
@@ -95,7 +94,6 @@ void Menu() {
             Menu();
         break;
     }
-
 }
 
 // Lancer une nouvelle partie

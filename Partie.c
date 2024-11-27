@@ -6,7 +6,6 @@
 
 #include "PartieDao.h"
 
-
 //Determine si la partie est gagnée par le joueur Fausse pour le moment
 bool AGagne(Joueur joueur, int indiceJoueur) {
     bool gagne = false;
@@ -170,7 +169,7 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
             }
         }
         else {
-            printf("\nAucune action à annuler !");
+            printf("\nAucune action a annuler !");
         }
     }
     else {
@@ -276,8 +275,6 @@ void DemanderNomPartie(char* nomPartie) {
     }
 }
 
-
-
 //Initialise la partie
 Partie* InitialiserPartie() {
     Partie partie;
@@ -291,7 +288,7 @@ Partie* InitialiserPartie() {
     //Initialisation plateau
     InitialiserPlateau(&partie.plateau,partie.joueurs, partie.nbJoueur);
     //Afficher Plateau
-    AfficherPlateau(&partie.plateau);
+    //AfficherPlateau(&partie.plateau);
     //Pas d'action avant
     Action action;
     action.action = Inaction;

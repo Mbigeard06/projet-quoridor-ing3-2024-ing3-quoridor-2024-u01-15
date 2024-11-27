@@ -80,8 +80,6 @@ void SetBarriere(Plateau *p, Barriere barriere, char visuel) {
     }
 }
 
-
-
 // Afficher le plateau de jeu avec des bordures et séparations
 void AfficherPlateau(Plateau *p) {
 
