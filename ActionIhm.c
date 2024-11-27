@@ -89,11 +89,9 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
                     printf("Entrée invalide. Veuillez saisir 'g' pour gauche ou 'd' pour droite.\n");
                 } else {
                     if(direction == 'g') {
-                        printf("\nGAUCHEEEEEE");
                         barriere->direction = Gauche;
                     }
                     else {
-                        printf("\nDROITEEEEEEE");
                         barriere->direction = Droit;
                     }
                     valide = 1;
@@ -108,10 +106,8 @@ bool BarriereIhm(Joueur* joueur, Barriere* barriere) {
                     printf("Entree invalide. Veuillez saisir 'h' pour haut ou 'b' pour bas.\n");
                 } else {
                     if (direction == 'h') {
-                        printf("\nDirection : HAUT");
                         barriere->direction = Haut;
                     } else {
-                        printf("\nDirection : BAS");
                         barriere->direction = Bas;
                     }
                     valide = 1;

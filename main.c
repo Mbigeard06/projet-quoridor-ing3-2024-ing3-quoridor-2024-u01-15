@@ -3,8 +3,7 @@
 //
 #include "Menu.h"
 
-int main() {
-    printf("AAAAAAAAAAA");
+int main(){
     Menu();
     return 0;
 }

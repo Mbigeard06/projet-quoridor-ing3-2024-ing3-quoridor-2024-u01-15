@@ -179,6 +179,14 @@ bool AnnulerDerniereAction(Joueur* joueur, Plateau* plateau, struct ActionNode* 
     return res;
 }
 
+//Fonction déclenche quand un joueur gagne
+void FinPartie(Partie partie) {
+    printf("\nFelicitation a %s !", partie.joueurs[partie.indiceJoueur].nom);
+    printf("\nA bientot pour une prochaine partie !");
+    //METTRE à jour le score
+
+}
+
 //Lance le tour d'un joueur =>Renvoi true si tour suivant
 bool Tour(Partie* partie) {
     bool tourSuivant = true;
@@ -201,6 +209,7 @@ bool Tour(Partie* partie) {
                     if(AGagne(partie->joueurs[partie->indiceJoueur],partie->indiceJoueur)) {
                         //Fin de la partie
                         tourSuivant = false;
+                        FinPartie(*partie);
                     }
                 }
             break;
@@ -213,7 +222,13 @@ bool Tour(Partie* partie) {
                 }
                 break;
             case 3:
-                    break;
+                printf("Le joueur passe son tour");
+                //Inaction
+                tourAction.action = Inaction;
+                //Enregistrement action
+                pushAction(tourAction, &partie->dernierAction);
+                finTour = true;
+                break;
             case 4:
                 //Indice du joueur precedent
                 int indiceJoueurConcerne = partie->indiceJoueur - 1;
@@ -285,7 +300,6 @@ Partie* InitialiserPartie() {
     partie.indiceJoueur = -1;
     //Initialiser le nom de la partie
     DemanderNomPartie(partie.nomPartie);
-    printf("Nom de la partie : %s", partie.nomPartie);
     //Initialisation joueur
     InitialiserJoueurs(&partie);
     //Initialisation plateau
