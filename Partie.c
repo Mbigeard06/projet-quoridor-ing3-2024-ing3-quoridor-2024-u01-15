@@ -59,7 +59,7 @@ void ObtenirJoueur(Partie* partie) {
         //Vider tampon
         while (getchar() != '\n');
         //Récupération du score du joueur
-        partie->joueurs[i].score = ScoreJoueur(partie->joueurs[i].nom);
+        partie->joueurs[i].score = RecupererScore(partie->joueurs[i].nom);
         //Choix du pion
         printf("\nQuel symbol veuillez vous prendre pour votre pion ?");
         scanf("%c", &pion);
@@ -185,6 +185,7 @@ void FinPartie(Partie partie) {
     printf("\nFelicitation a %s !", partie.joueurs[partie.indiceJoueur].nom);
     printf("\nA bientot pour une prochaine partie !");
     //METTRE à jour le score
+    EnregistrerOuAjouterScore(partie.joueurs[partie.indiceJoueur].nom, 5);
 
 }
 
@@ -305,8 +306,6 @@ Partie* InitialiserPartie() {
     InitialiserJoueurs(&partie);
     //Initialisation plateau
     InitialiserPlateau(&partie.plateau,partie.joueurs, partie.nbJoueur);
-    //Afficher Plateau
-    AfficherPlateau(&partie.plateau);
     //Pas d'action avant
     Action action;
     action.action = Inaction;

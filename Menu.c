@@ -105,7 +105,8 @@ void NouvellePartie() {
 
 // Afficher les scores des joueurs
 void ScoreJoueurs() {
-    // Implémentation à faire
+    AfficherTousLesScores();
+    Menu();
 }
 
 void Aide() {}

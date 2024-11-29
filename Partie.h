@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "JoueurDao.h";
 #define MAX_NOM_PARTIE 100  // Taille maximale du nom de la partie
 
 

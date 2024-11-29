@@ -6,6 +6,7 @@
 #define MENU_H
 
 #include "Partie.h"
+#include "JoueurDao.h"
 
 //Lancer le menu
 void Menu();
