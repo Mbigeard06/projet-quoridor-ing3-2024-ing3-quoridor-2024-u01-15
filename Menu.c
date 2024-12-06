@@ -38,7 +38,7 @@ int MenuIhm() {
     printf("\t**                                                                                               **\t\n");
     printf("\t**        5 - QUITTER LE JEU                                                                     **\t\n");
     printf("\t**                                                                                               **\t\n");
-    printf("\t**                                         AMUSEZ VOUS BIEN!!                                    **\t\n");
+    printf("\t**                                           AMUSEZ VOUS BIEN!!                                  **\t\n");
     printf("\t**                                                                                               **\t\n");
     printf("\t***************************************************************************************************\t\n");
     printf("\t***************************************************************************************************\t\n");
@@ -54,7 +54,6 @@ int MenuIhm() {
 
     return choix;
 }
-
 
 // Lancer le menu
 void Menu() {
@@ -95,7 +94,6 @@ void Menu() {
             Menu();
         break;
     }
-
 }
 
 // Lancer une nouvelle partie

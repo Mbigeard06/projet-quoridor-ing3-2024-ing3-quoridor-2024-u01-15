@@ -6,14 +6,11 @@
 #include <stdio.h>
 
 
-
-
 // Fonction principale pour initialiser les joueurs sur le plateur
 void InitialiserJoueursPlateau(Joueur* joueurs, int nbJoueur, Plateau *plateau) {
     // Définir les positions de base des joueurs (en fonction du nombre de joueurs)
     Position positions[] = {
         {0, 4},  // Joueur 1 (haut du plateau)171
-
         {TAILLE_PLATEAU - 1, 4},  // Joueur 2 (bas du plateau)
         {4, 0},  // Joueur 3 (gauche du plateau)
         {4, TAILLE_PLATEAU - 1}  // Joueur 4 (droite du plateau)
@@ -75,12 +72,10 @@ void SetBarriere(Plateau *p, Barriere barriere, char visuel) {
         break;
 
         default:
-            printf("Direction invalide pour la barrière.\n");
+            printf("Direction invalide pour la barriere.\n");
         break;
     }
 }
-
-
 
 // Afficher le plateau de jeu avec des bordures et séparations
 void AfficherPlateau(Plateau *p) {
@@ -328,11 +323,11 @@ int VerifierDeplacement(Joueur* joueur, Plateau* plateau, Direction deplacement)
             }
         }
         else {
-            printf("\nDéplacement impossible, vous ne pouvez pas passer par dessus une barriere");
+            printf("\nDeplacement impossible, vous ne pouvez pas passer par dessus une barriere");
         }
     }
     else {
-        printf("\nDéplacement impossible, vous debez rester dans les limites du tableau");
+        printf("\nDeplacement impossible, vous debez rester dans les limites du tableau");
     }
     return res;
 }
@@ -372,14 +367,14 @@ bool DeplacerJoueur(Joueur* joueur, Plateau* plateau, Action* lastAction) {
                 }
                 else {
                     //Saut annulé
-                    printf("L utilisateur n a pas pu sauter");
+                    printf("L'utilisateur n'a pas pu sauter");
                     sortir = true;
                 }
             }
         }
         //Retour au menu d'action
         else {
-            printf("L utilisateur ne veut plus se déplacer");
+            printf("L'utilisateur ne veut plus se deplacer");
             sortir = true;
         }
         AfficherPlateau(plateau);
@@ -443,8 +438,6 @@ bool PeutPlacerBarriere(Joueur* joueur, Barriere barriere) {
     return res;
 }
 
-
-
 //=>true si la barriere peut être placée
 bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barriere) {
     bool res = false;
@@ -463,8 +456,6 @@ bool VerifierPlacementBarriere(Joueur* joueur, Plateau* plateau, Barriere barrie
     }
     return res;
 }
-
-
 
 //=>true si la barriere à été placée
 bool PlacerBarriere(Joueur* joueur, Plateau* plateau, Action* lastAction) {
